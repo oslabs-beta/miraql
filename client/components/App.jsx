@@ -1,11 +1,12 @@
 import React from "react";
-import {render} from "react-dom";
+import Container from './Container.jsx'
+
 
 
 function App(){
     return (
         <div>
-            <h1>BOILER PLATE FOR MIRAQLLLL</h1>
+            <Container />
         </div>
     )
 }
