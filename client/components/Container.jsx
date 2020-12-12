@@ -9,13 +9,7 @@ function Container() {
       <Grid borderTop="1px" borderColor="gray.200" h={12}>
         <GridItem bg="red.50">MiraQL</GridItem>
       </Grid>
-      <Grid borderTop="1px" borderColor="gray.200" h={10}>
-        <GridItem bg="white">
           <SubmitUrlComponent />
-        </GridItem>
-      </Grid>
-      <SubmitQuery />
-   
     </div>
   );
 }
