@@ -8,6 +8,9 @@ function Container(){
         <Grid borderTop="1px" borderColor="gray.200" h={12}>
           <GridItem bg="red.50">MiraQL</GridItem>
         </Grid>
+        <Grid borderTop="1px" borderColor="gray.00" h={12}>
+          <GridItem bg="gray.300">URL: </GridItem>
+        </Grid>
         <Grid h="100%" border="1px" borderColor="gray.200" autoFlow="column dense">
           <GridItem bg="#F7FAFC" colSpan={1}>Submit Query</GridItem>
           <GridItem bg="#EDF2F7" colSpan={1}>Response</GridItem>
