@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { FormControl, FormLabel, Input, Button, Stack } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Button, Stack, Grid, GridItem} from '@chakra-ui/react';
+import SubmitQuery from './SubmitQuery.jsx'
+
+// SubmitUrlComponent is a grandparent to SubmitQuery and grandparent to every other component listed.
+// We do this because we super need the UrlValue everywhere else for the logic
 
 function SubmitUrlComponent() {
   let [urlValue, setUrlValue] = useState('');
@@ -10,6 +14,10 @@ function SubmitUrlComponent() {
   };
 
   return (
+    <div>
+    <Grid borderTop="1px" borderColor="gray.200" h={10}>
+    <GridItem bg="white">
+
     <Stack direction={'row'}>
       <FormLabel> URL: </FormLabel>
       <FormControl id="url-form">
@@ -21,6 +29,10 @@ function SubmitUrlComponent() {
       </FormControl>
       <Button colorScheme="pink">Connect</Button>
     </Stack>
+    </GridItem>
+  </Grid>
+  <SubmitQuery />
+  </div>
   );
 }
 
