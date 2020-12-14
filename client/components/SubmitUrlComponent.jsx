@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormControl, FormLabel, Input, Button, Stack, Grid, GridItem} from '@chakra-ui/react';
 import SubmitQuery from './SubmitQuery.jsx'
-
+ 
 // SubmitUrlComponent is a grandparent to SubmitQuery and grandparent to every other component listed.
 // We do this because we super need the UrlValue everywhere else for the logic
 
