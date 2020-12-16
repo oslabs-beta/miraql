@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import * as d3 from "d3";
 import Tree from "react-d3-tree";
+import DatabInputModal from './DatabInputModal.jsx';
 
 const myTreeData = [
   {
@@ -46,9 +46,10 @@ const myTreeData = [
 
 function Schema() {
   return (
-    <div>
+    <>
+      <DatabInputModal />
       <Tree data={myTreeData} />
-    </div>
+    </>
   );
 }
 
