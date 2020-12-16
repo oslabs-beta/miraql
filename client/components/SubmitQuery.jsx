@@ -7,9 +7,19 @@ import {
   Button,
   ButtonGroup,
   Stack,
-} from "@chakra-ui/react";
-import Response from "./Response.jsx";
-import Schema from "./Schema.jsx";
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+} from '@chakra-ui/react';
+import Response from './Response.jsx';
+import { Controlled as CodeMirror } from 'react-codemirror2';
+import '../../node_modules/codemirror/lib/codemirror.css';
+import '../../node_modules/codemirror/theme/neo.css';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/addon/edit/closebrackets';
+import Schema from './Schema.jsx'
 
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
