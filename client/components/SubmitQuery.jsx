@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Grid,
   GridItem,
@@ -7,6 +7,7 @@ import {
   Button,
   ButtonGroup,
   Stack,
+<<<<<<< HEAD
   Tabs,
   TabList,
   TabPanels,
@@ -19,12 +20,17 @@ import '../../node_modules/codemirror/lib/codemirror.css';
 import '../../node_modules/codemirror/theme/neo.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/edit/closebrackets';
+=======
+} from "@chakra-ui/react";
+import Response from "./Response.jsx";
+import Schema from "./Schema.jsx";
+>>>>>>> main
 
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
-  let [query, setQuery] = useState('');
+  let [query, setQuery] = useState("");
   /// react hooks to hold fetch response in state
-  let [fetchResponse, setFetchResponse] = useState('');
+  let [fetchResponse, setFetchResponse] = useState("");
 
   // handle query text input change
   const handleQueryChange = (e) => {
@@ -36,9 +42,9 @@ function SubmitQuery({ urlValue }) {
   const getQueryResponse = () => {
     // execute a fetch request
     fetch(`${urlValue}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-type': 'application/json',
+        "Content-type": "application/json",
       },
       body: JSON.stringify({ query: query }),
     })
@@ -88,7 +94,7 @@ function SubmitQuery({ urlValue }) {
         />
       </GridItem>
       <GridItem bg="#E2E8F0" colSpan={2}>
-        Submit Schema
+        <Schema />
       </GridItem>
     </Grid>
   );
