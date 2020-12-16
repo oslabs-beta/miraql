@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Grid,
   GridItem,
@@ -7,14 +7,15 @@ import {
   Button,
   ButtonGroup,
   Stack,
-} from '@chakra-ui/react';
-import Response from './Response.jsx';
+} from "@chakra-ui/react";
+import Response from "./Response.jsx";
+import Schema from "./Schema.jsx";
 
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
-  let [query, setQuery] = useState('');
+  let [query, setQuery] = useState("");
   /// react hooks to hold fetch response in state
-  let [fetchResponse, setFetchResponse] = useState('');
+  let [fetchResponse, setFetchResponse] = useState("");
 
   // handle query text input change
   const handleQueryChange = (e) => {
@@ -26,9 +27,9 @@ function SubmitQuery({ urlValue }) {
   const getQueryResponse = () => {
     // execute a fetch request
     fetch(`${urlValue}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-type': 'application/json',
+        "Content-type": "application/json",
       },
       body: JSON.stringify({ query: query }),
     })
@@ -43,7 +44,7 @@ function SubmitQuery({ urlValue }) {
   return (
     <Grid h="100%" border="1px" borderColor="gray.200" autoFlow="column dense">
       <GridItem bg="#F7FAFC" colSpan={1}>
-        <Stack direction={'column'}>
+        <Stack direction={"column"}>
           <Text mb="8px">Submit Query:</Text>
           <Textarea
             value={query}
@@ -67,7 +68,7 @@ function SubmitQuery({ urlValue }) {
         />
       </GridItem>
       <GridItem bg="#E2E8F0" colSpan={2}>
-        Submit Schema
+        <Schema />
       </GridItem>
     </Grid>
   );
