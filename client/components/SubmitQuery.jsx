@@ -23,6 +23,8 @@ import Schema from './Schema.jsx';
 
 require('../styles/style.css');
 
+
+
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
   let [query, setQuery] = useState('');
@@ -100,6 +102,8 @@ function SubmitQuery({ urlValue }) {
 
 export default SubmitQuery;
 
+// working tree was not clean, added to submit query
+// also what is this
 // try {
 //   const queryResponse = await fetch(`${urlValue}`, {
 //     method: 'POST',

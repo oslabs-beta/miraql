@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import * as d3 from "d3";
 import Tree from "react-d3-tree";
+import DatabInputModal from './DatabInputModal.jsx';
 
 const myTreeData = [
   {
@@ -10,9 +10,36 @@ const myTreeData = [
     //   keyB: "val B",
     //   keyC: "val C",
     // },
+    nodeSvgShape: {
+      shape: 'rect',
+      shapeProps: {
+        width: 20,
+        height: 20,
+        x: -10,
+        y: -10,
+        fill: 'yellow',
+      }
+    },
     children: [
       {
         name: "Author",
+        nodeSvgShape: {
+          shape: 'rect',
+          shapeProps: {
+            width: 20,
+            height: 20,
+            x: -10,
+            y: -10,
+            fill: 'yellow',
+          }
+        },
+        //   styles: {
+        //     links:{
+        //     stroke: 'yellow',
+        //     strokeWidth: "2px",
+        //     }
+        // },
+        
         children: [
           {
             name: "authorid",
@@ -44,11 +71,34 @@ const myTreeData = [
   },
 ];
 
+const svgSquare = {
+  shape: 'rect',
+  shapeProps: {
+    width: 20,
+    height: 20,
+    x: -10,
+    y: -10,
+    fill: 'pink',
+  }
+}
+ 
+
+
 function Schema() {
   return (
-    <div>
-      <Tree data={myTreeData} />
-    </div>
+    <>
+      <DatabInputModal />
+      <Tree data={myTreeData} 
+      nodeSvgShape={svgSquare}
+      styles={{
+        links: {
+             
+              stroke: 'pink',
+              strokeWidth: "5px",
+            },
+     }}
+       />
+    </>
   );
 }
 
