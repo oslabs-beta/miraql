@@ -19,11 +19,9 @@ import '../../node_modules/codemirror/lib/codemirror.css';
 import '../../node_modules/codemirror/theme/neo.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/edit/closebrackets';
-<<<<<<< HEAD
 import Schema from './Schema.jsx'
-=======
-import Schema from './Schema.jsx';
->>>>>>> 2f04af18350a1c5baa31c9f007103a8fe5da68ab
+
+require('../styles/style.css');
 
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
@@ -53,13 +51,8 @@ function SubmitQuery({ urlValue }) {
       .catch((error) => console.log(error));
   };
 
-  // const codemirrorRef = React.useRef();
-  //   React.useEffect(() => {
-  //   const current = codemirrorRef.current.editor.display.wrapper.style.height = "600px";
-  // });
-
   return (
-    <Grid templateColumns="repeat(10, 1fr)" height="100%">
+    <Grid templateColumns="repeat(10, 1fr)" height="90%">
       <GridItem bg="#F7FAFC" colStart={1} colEnd={3}>
         <Tabs variant="enclosed" colorScheme="pink">
           <TabList>
@@ -67,7 +60,7 @@ function SubmitQuery({ urlValue }) {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <Stack direction={'column'}>
+              {/* <Stack direction={'column'}> */}
                 <CodeMirror
                   value={query}
                   options={{
@@ -76,17 +69,17 @@ function SubmitQuery({ urlValue }) {
                     mode: 'javascript',
                     theme: 'neo',
                     lineNumbers: true,
+                    lineWrapping: true,
                   }}
                   onBeforeChange={(editor, data, value) => {
                     setQuery(value);
                   }}
                   onChange={(editor, data, value) => {}}
-                  // ref={codemirrorRef}
                 />
-                <Button colorScheme="pink" size="sm" onClick={getQueryResponse}>
+                <Button colorScheme="pink" size="sm" onClick={getQueryResponse} id="submitbutton">
                   Submit
                 </Button>
-              </Stack>
+              {/* </Stack> */}
             </TabPanel>
           </TabPanels>
         </Tabs>

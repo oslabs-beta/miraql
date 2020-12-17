@@ -26,8 +26,6 @@ function Response({ urlValue, query, fetchResponse }) {
       </TabList>
       <TabPanels>
         <TabPanel>
-          {/* <Grid templateColumns="repeat(1, 1fr)">
-            <GridItem bg="#F7FAFC" max-width="full"> */}
           <CodeMirror
             value={cleanResponse}
             options={{
@@ -36,10 +34,10 @@ function Response({ urlValue, query, fetchResponse }) {
               mode: 'javascript',
               theme: 'neo',
               lineNumbers: true,
+              lineWrapping: true,
+              readOnly: true,
             }}
           />
-          {/* </GridItem>
-          </Grid> */}
         </TabPanel>
         <TabPanel>
           <Errors fetchResponse={fetchResponse} />
