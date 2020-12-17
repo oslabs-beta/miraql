@@ -19,7 +19,7 @@ import '../../node_modules/codemirror/lib/codemirror.css';
 import '../../node_modules/codemirror/theme/neo.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/edit/closebrackets';
-import Schema from './Schema.jsx'
+import Schema from './Schema.jsx';
 
 require('../styles/style.css');
 
