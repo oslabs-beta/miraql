@@ -4,7 +4,7 @@ const Errors = ({ fetchResponse }) => {
   console.log(fetchResponse);
   return (
     <div>
-      <p>This shit has errors b </p>
+      <p>You gucci, no errors </p>
     </div>
   );
 };
