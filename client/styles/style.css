@@ -1,1 +1,9 @@
+.CodeMirror {
+  border: 1px solid #eee;
+  min-height: 80%;
+}
 
+#submitbutton {
+  margin-top: 20px;
+  float: right;
+} 
