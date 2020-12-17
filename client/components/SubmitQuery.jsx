@@ -102,6 +102,8 @@ function SubmitQuery({ urlValue }) {
 
 export default SubmitQuery;
 
+// working tree was not clean, added to submit query
+// also what is this
 // try {
 //   const queryResponse = await fetch(`${urlValue}`, {
 //     method: 'POST',
