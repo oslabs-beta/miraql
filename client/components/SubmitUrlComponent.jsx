@@ -36,7 +36,7 @@ function SubmitUrlComponent() {
       <Grid borderTop="1px" borderColor="gray.200" h={10}>
         <GridItem bg="white">
           <Stack direction={'row'}>
-            <FormLabel> URL: </FormLabel>
+            <FormLabel ml="10px" mt="7px"> URL: </FormLabel>
             <FormControl id="url-form">
               <Input
                 type="url"

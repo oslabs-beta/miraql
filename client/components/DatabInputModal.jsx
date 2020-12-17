@@ -196,7 +196,7 @@ const isTrueOrFalse = (bool) => {
             <Select placeholder="-" name="typeRelationship" onChange={ev => onChangeForNow(ev, i)}>
               <option value="id">ID</option>
             </Select>
-            <Button onClick={() => handleRemoveClick(i)}>Remove</Button>
+            {inputs.length !== 1 && <Button onClick={() => handleRemoveClick(i)}>Remove</Button> }
             </VStack>
             <Spacer />
             </HStack>
