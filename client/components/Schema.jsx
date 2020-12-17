@@ -33,6 +33,12 @@ const myTreeData = [
             fill: 'yellow',
           }
         },
+        //   styles: {
+        //     links:{
+        //     stroke: 'yellow',
+        //     strokeWidth: "2px",
+        //     }
+        // },
         
         children: [
           {
@@ -84,6 +90,13 @@ function Schema() {
       <DatabInputModal />
       <Tree data={myTreeData} 
       nodeSvgShape={svgSquare}
+      styles={{
+        links: {
+             
+              stroke: 'pink',
+              strokeWidth: "5px",
+            },
+     }}
        />
     </>
   );
