@@ -7,6 +7,14 @@ import {
   Stack,
   Grid,
   GridItem,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
 } from '@chakra-ui/react';
 import SubmitQuery from './SubmitQuery.jsx';
 
@@ -36,7 +44,22 @@ function SubmitUrlComponent() {
                 onChange={handleUrlInput}
               />
             </FormControl>
-            <Button colorScheme="pink">Connect</Button>
+            <Popover>
+              <PopoverTrigger>
+                <Button colorScheme="pink">Connect</Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverHeader fontWeight="semibold">
+                  URL Submitted!
+                </PopoverHeader>
+                <PopoverArrow bg="white" />
+                <PopoverCloseButton bg="pink.300" />
+                <PopoverBody>
+                  Now that you’ve submitted a URL, please submit a query and/or
+                  schema!
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
           </Stack>
         </GridItem>
       </Grid>

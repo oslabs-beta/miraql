@@ -15,7 +15,7 @@ function Container() {
               src="https://res.cloudinary.com/dbo7cxsfs/image/upload/v1607984039/MiraQL_cjttvv.png"
               alt="MiraQL"
             />
-            <Text>MiraQL</Text>
+            <Text id="miraql-logo">MiraQL</Text>
           </Stack>
         </GridItem>
       </Grid>
