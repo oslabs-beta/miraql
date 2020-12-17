@@ -23,8 +23,6 @@ import Schema from './Schema.jsx';
 
 require('../styles/style.css');
 
-
-
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
   let [query, setQuery] = useState('');
@@ -63,24 +61,29 @@ function SubmitQuery({ urlValue }) {
           <TabPanels>
             <TabPanel>
               {/* <Stack direction={'column'}> */}
-                <CodeMirror
-                  value={query}
-                  options={{
-                    autoCloseBrackets: true,
-                    tabSize: 2,
-                    mode: 'javascript',
-                    theme: 'neo',
-                    lineNumbers: true,
-                    lineWrapping: true,
-                  }}
-                  onBeforeChange={(editor, data, value) => {
-                    setQuery(value);
-                  }}
-                  onChange={(editor, data, value) => {}}
-                />
-                <Button colorScheme="pink" size="sm" onClick={getQueryResponse} id="submitbutton">
-                  Submit
-                </Button>
+              <CodeMirror
+                value={query}
+                options={{
+                  autoCloseBrackets: true,
+                  tabSize: 2,
+                  mode: 'javascript',
+                  theme: 'neo',
+                  lineNumbers: true,
+                  lineWrapping: true,
+                }}
+                onBeforeChange={(editor, data, value) => {
+                  setQuery(value);
+                }}
+                onChange={(editor, data, value) => {}}
+              />
+              <Button
+                colorScheme="pink"
+                size="sm"
+                onClick={getQueryResponse}
+                id="submitbutton"
+              >
+                Submit
+              </Button>
               {/* </Stack> */}
             </TabPanel>
           </TabPanels>
