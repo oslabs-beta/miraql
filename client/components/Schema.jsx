@@ -10,9 +10,30 @@ const myTreeData = [
     //   keyB: "val B",
     //   keyC: "val C",
     // },
+    nodeSvgShape: {
+      shape: 'rect',
+      shapeProps: {
+        width: 20,
+        height: 20,
+        x: -10,
+        y: -10,
+        fill: 'yellow',
+      }
+    },
     children: [
       {
         name: "Author",
+        nodeSvgShape: {
+          shape: 'rect',
+          shapeProps: {
+            width: 20,
+            height: 20,
+            x: -10,
+            y: -10,
+            fill: 'yellow',
+          }
+        },
+        
         children: [
           {
             name: "authorid",
@@ -44,11 +65,26 @@ const myTreeData = [
   },
 ];
 
+const svgSquare = {
+  shape: 'rect',
+  shapeProps: {
+    width: 20,
+    height: 20,
+    x: -10,
+    y: -10,
+    fill: 'pink',
+  }
+}
+ 
+
+
 function Schema() {
   return (
     <>
       <DatabInputModal />
-      <Tree data={myTreeData} />
+      <Tree data={myTreeData} 
+      nodeSvgShape={svgSquare}
+       />
     </>
   );
 }

@@ -21,6 +21,8 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/edit/closebrackets';
 import Schema from './Schema.jsx'
 
+
+
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
   let [query, setQuery] = useState("");

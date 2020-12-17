@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -23,6 +23,9 @@ import {
 } from '@chakra-ui/react';
 
 function DatabInputModal() {
+
+
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
@@ -96,7 +99,7 @@ function DatabInputModal() {
                 <FormLabel htmlFor="Required" mb="0">
                   Required?
                 </FormLabel>
-                <Switch id="required-switch" />]
+                <Switch id="required-switch" />
               </VStack>
             </FormControl>
             <Spacer />
