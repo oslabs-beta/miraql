@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Grid,
   GridItem,
@@ -19,13 +19,13 @@ import '../../node_modules/codemirror/lib/codemirror.css';
 import '../../node_modules/codemirror/theme/neo.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/edit/closebrackets';
-import Schema from './Schema.jsx'
+import Schema from './Schema.jsx';
 
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
-  let [query, setQuery] = useState("");
+  let [query, setQuery] = useState('');
   /// react hooks to hold fetch response in state
-  let [fetchResponse, setFetchResponse] = useState("");
+  let [fetchResponse, setFetchResponse] = useState('');
 
   // handle query text input change
   const handleQueryChange = (e) => {
@@ -37,9 +37,9 @@ function SubmitQuery({ urlValue }) {
   const getQueryResponse = () => {
     // execute a fetch request
     fetch(`${urlValue}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({ query: query }),
     })
@@ -49,9 +49,14 @@ function SubmitQuery({ urlValue }) {
       .catch((error) => console.log(error));
   };
 
+  // const codemirrorRef = React.useRef();
+  //   React.useEffect(() => {
+  //   const current = codemirrorRef.current.editor.display.wrapper.style.height = "600px";
+  // });
+
   return (
-    <Grid h="100%" border="1px" borderColor="gray.200" autoFlow="column dense">
-      <GridItem bg="#F7FAFC" colSpan={1}>
+    <Grid templateColumns="repeat(10, 1fr)" height="100%">
+      <GridItem bg="#F7FAFC" colStart={1} colEnd={3}>
         <Tabs variant="enclosed" colorScheme="pink">
           <TabList>
             <Tab>Submit Query</Tab>
@@ -72,6 +77,7 @@ function SubmitQuery({ urlValue }) {
                     setQuery(value);
                   }}
                   onChange={(editor, data, value) => {}}
+                  // ref={codemirrorRef}
                 />
                 <Button colorScheme="pink" size="sm" onClick={getQueryResponse}>
                   Submit
@@ -81,14 +87,14 @@ function SubmitQuery({ urlValue }) {
           </TabPanels>
         </Tabs>
       </GridItem>
-      <GridItem bg="#EDF2F7" colSpan={1}>
+      <GridItem bg="#EDF2F7" colStart={3} colEnd={6}>
         <Response
           urlValue={urlValue}
           query={query}
           fetchResponse={fetchResponse}
         />
       </GridItem>
-      <GridItem bg="#E2E8F0" colSpan={2}>
+      <GridItem bg="#F7FAFC" colStart={6} colEnd={11}>
         <Schema />
       </GridItem>
     </Grid>
