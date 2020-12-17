@@ -4,7 +4,16 @@ import '../../node_modules/codemirror/lib/codemirror.css';
 import '../../node_modules/codemirror/theme/neo.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/edit/closebrackets';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Grid,
+  GridItem,
+} from '@chakra-ui/react';
+import Errors from './Errors.jsx';
 
 function Response({ urlValue, query, fetchResponse }) {
   const cleanResponse = JSON.stringify(fetchResponse, null, 2);
@@ -17,6 +26,8 @@ function Response({ urlValue, query, fetchResponse }) {
       </TabList>
       <TabPanels>
         <TabPanel>
+          {/* <Grid templateColumns="repeat(1, 1fr)">
+            <GridItem bg="#F7FAFC" max-width="full"> */}
           <CodeMirror
             value={cleanResponse}
             options={{
@@ -27,9 +38,11 @@ function Response({ urlValue, query, fetchResponse }) {
               lineNumbers: true,
             }}
           />
+          {/* </GridItem>
+          </Grid> */}
         </TabPanel>
         <TabPanel>
-          <p>Errors</p>
+          <Errors fetchResponse={fetchResponse} />
         </TabPanel>
       </TabPanels>
     </Tabs>
