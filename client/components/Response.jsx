@@ -18,9 +18,16 @@ import Errors from './Errors.jsx';
 function Response({ urlValue, query, fetchResponse }) {
   const cleanResponse = JSON.stringify(fetchResponse, null, 2);
 
+  // let TabName = 'Response';
+  // console.log('response', fetchResponse);
+  // // If there is an 'errors' object in the response, switch tabname to Errors
+  // if (fetchResponse['errors']) TabName = 'Errors';
+
   return (
     <Tabs variant="enclosed" colorScheme="pink">
       <TabList>
+        {/* <Tab isselected="false">{TabName}</Tab> */}
+        {/* <Tab isselected="true">Errors</Tab> */}
         <Tab>Response</Tab>
         <Tab>Errors</Tab>
       </TabList>
