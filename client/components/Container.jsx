@@ -1,7 +1,7 @@
 import React from 'react';
-import { Grid, GridItem, Image, Stack, Text } from '@chakra-ui/react';
+import { Grid, GridItem, Image, Stack, Heading } from '@chakra-ui/react';
 import SubmitUrlComponent from './SubmitUrlComponent.jsx';
-require('../styles/style.css');
+import '../styles/style.css';
 
 // container holds the MiraQL header and submitURL component
 function Container() {
@@ -11,12 +11,14 @@ function Container() {
         <GridItem bg="red.50">
           <Stack direction={'row'}>
             <Image
+              ml="10px"
+              mt="5px"
               boxSize="25px"
               objectFit="cover"
               src="https://res.cloudinary.com/dbo7cxsfs/image/upload/v1607984039/MiraQL_cjttvv.png"
               alt="MiraQL"
             />
-            <Text id="miraql-logo">MiraQL</Text>
+            <Heading fontSize="3xl" id="miraql-logo">MiraQL</Heading>
           </Stack>
         </GridItem>
       </Grid>

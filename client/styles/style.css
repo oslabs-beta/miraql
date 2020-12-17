@@ -1,11 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .CodeMirror {
-  border: 1px solid #eee;
-  min-height: 80%;
+	border: 1px solid #eee;
+	min-height: 80%;
 }
 
 #submitbutton {
-  margin-top: 20px;
-  float: right;
+	margin-top: 20px;
+	float: right;
+}
+
+Image {
+	object-position: center;
+	background-color: green;
+}
+
+h2 {
+	/* border: 2px solid green; */
+	padding: 0 0 0 5px;
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+	color: #d53f8c;
 }
