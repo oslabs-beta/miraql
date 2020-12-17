@@ -58,6 +58,20 @@ const onChangeForNow = (ev, index) => {
 };
 
 
+// handle click event of the Remove button
+const handleRemoveClick = index => {
+  const list = [...inputs];
+  list.splice(index, 1);
+  setInputs(list);
+};
+ 
+// handle click event of the Add button
+const handleAddClick = () => {
+  setInputs([...inputs, initialValues]);
+};
+
+
+
 // toggle between true and false
 // this is not currently being used or working
 const isTrueOrFalse = (bool) => {
@@ -91,22 +105,23 @@ const isTrueOrFalse = (bool) => {
           </ModalHeader>
           <Flex>
           <ModalBody>
-          {inputs.map((element, index) => {
+          {inputs.map((element, i) => {
             return (
+              <>
           <HStack spacing="24px">
             {/* this second editable block is an input field for the field name */}
               <VStack spacing="8px">
             <p>Field name</p>
             <Editable border="2px" borderColor="gray.200" borderRadius="10px" defaultValue="enter name">
                 <EditablePreview />
-                <EditableInput name="fieldName" onChange={ev => onChangeForNow(ev, index)} value={element.fieldName} />
+                <EditableInput name="fieldName" onChange={ev => onChangeForNow(ev, i)} value={element.fieldName} />
             </Editable>
               </VStack>
               <Spacer />
             {/* Dropdown menu to select your field type */}
             <VStack spacing="8px">
             <p>Field Type</p>
-            <Select placeholder="–" name="fieldType" onChange={ev => onChangeForNow(ev, index)}>
+            <Select placeholder="–" name="fieldType" onChange={ev => onChangeForNow(ev, i)}>
               <option value="id">ID</option>
               <option value="string">String</option>
               <option value="boolean">Boolean</option>
@@ -120,7 +135,7 @@ const isTrueOrFalse = (bool) => {
             <p>Default Value</p>
             <Editable border="2px" borderColor="gray.200" borderRadius="10px" defaultValue="enter value" >
               <EditablePreview />
-              <EditableInput name="defaultValue" onChange={ev => onChangeForNow(ev, index)} value={element.defaultValue}/>
+              <EditableInput name="defaultValue" onChange={ev => onChangeForNow(ev, i)} value={element.defaultValue}/>
             </Editable>
             </VStack>
             <Spacer />
@@ -130,7 +145,7 @@ const isTrueOrFalse = (bool) => {
                 <FormLabel htmlFor="primary-key" mb="0">
                   Primary Key
                 </FormLabel>
-                <Switch id="primary-key-switch" name="primaryKey" onChange={ev => onChangeForNow(ev, index)} value={true}/>
+                <Switch id="primary-key-switch" name="primaryKey" onChange={ev => onChangeForNow(ev, i)} value={true}/>
               </VStack>
             </FormControl>
             <Spacer />
@@ -139,7 +154,7 @@ const isTrueOrFalse = (bool) => {
                 <FormLabel htmlFor="unique" mb="0">
                   Unique
                 </FormLabel>
-                <Switch id="unique-switch" name="unique" onChange={ev => onChangeForNow(ev, index)} value={true}/>
+                <Switch id="unique-switch" name="unique" onChange={ev => onChangeForNow(ev, i)} value={true}/>
               </VStack>
             </FormControl>
             <Spacer />
@@ -148,7 +163,7 @@ const isTrueOrFalse = (bool) => {
                 <FormLabel htmlFor="Required" mb="0">
                   Required?
                 </FormLabel>
-                <Switch id="required-switch" name="required" onChange={ev => onChangeForNow(ev, index)} value={true}/>
+                <Switch id="required-switch" name="required" onChange={ev => onChangeForNow(ev, i)} value={true}/>
               </VStack>
             </FormControl>
             <Spacer />
@@ -157,40 +172,42 @@ const isTrueOrFalse = (bool) => {
                 <FormLabel htmlFor="queryable" mb="0">
                   Queryable?
                 </FormLabel>
-                <Switch id="queryable-switch" name="queryable" onChange={ev => onChangeForNow(ev, index)} value={true}/>
+                <Switch id="queryable-switch" name="queryable" onChange={ev => onChangeForNow(ev, i)} value={true}/>
               </VStack>
             </FormControl>
             <Spacer />
             {/* these three selects are for table relationship, field relationship, and type of relationship */}
             <VStack spacing="8px">
               <p>Table Relationship</p>
-            <Select placeholder="-" name="tableRelationship" onChange={ev => onChangeForNow(ev, index)}>
+            <Select placeholder="-" name="tableRelationship" onChange={ev => onChangeForNow(ev, i)}>
               <option value="id">ID</option>
             </Select>
             </VStack>
             <Spacer />
             <VStack spacing="8px">
               <p>Field Relationship</p>
-            <Select placeholder="-" name="fieldRelationship" onChange={ev => onChangeForNow(ev, index)}>
+            <Select placeholder="-" name="fieldRelationship" onChange={ev => onChangeForNow(ev, i)}>
               <option value="id">ID</option>
             </Select>
             </VStack>
             <Spacer />
             <VStack spacing="8px">
               <p>Type of Relationship</p>
-            <Select placeholder="-" name="typeRelationship" onChange={ev => onChangeForNow(ev, index)}>
+            <Select placeholder="-" name="typeRelationship" onChange={ev => onChangeForNow(ev, i)}>
               <option value="id">ID</option>
             </Select>
+            <Button onClick={() => handleRemoveClick(i)}>Remove</Button>
             </VStack>
             <Spacer />
             </HStack>
+            {inputs.length - 1 === i && <Button onClick={handleAddClick} variant="ghost">+ Add Field</Button>}
+            </>
             );
-            })}
+          })}
             </ModalBody>
           </Flex>
 
           <ModalFooter>
-            <Button variant="ghost">+ Add Field</Button>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Save
             </Button>
