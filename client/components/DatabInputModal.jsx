@@ -96,6 +96,7 @@ const isTrueOrFalse = (bool) => {
   
   return (
     <>
+    
       <Button onClick={onOpen}>Add Table</Button>
 
       <Modal isOpen={isOpen} size={"full"} onClose={onClose}>
@@ -222,6 +223,7 @@ const isTrueOrFalse = (bool) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <Schema {...inputs} tableName={ourTableName}/>
     </>
   )
 };

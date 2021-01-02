@@ -19,9 +19,9 @@ import '../../node_modules/codemirror/lib/codemirror.css';
 import '../../node_modules/codemirror/theme/neo.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/edit/closebrackets';
-import Schema from './Schema.jsx';
 
 import '../styles/style.css';
+import DatabInputModal from './DatabInputModal.jsx';
 
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
@@ -97,7 +97,7 @@ function SubmitQuery({ urlValue }) {
         />
       </GridItem>
       <GridItem bg="#F7FAFC" colStart={6} colEnd={11}>
-        <Schema />
+        <DatabInputModal />
       </GridItem>
     </Grid>
   );

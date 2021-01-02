@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Tree from "react-d3-tree";
-import DatabInputModal from './DatabInputModal.jsx';
 
 // const myTreeData = [
 //   {
@@ -73,7 +72,7 @@ import DatabInputModal from './DatabInputModal.jsx';
 
 const schemaTreeData = [
  {
-   name: "Queries"
+   name: "Queries",
  }
 ]
 
@@ -90,18 +89,26 @@ const svgSquare = {
  
 
 
-function Schema() {
+function Schema(props) {
+
+  console.log(props)
+
   return (
     <>
-      <DatabInputModal />
       <Tree data={schemaTreeData} 
       nodeSvgShape={svgSquare}
+      translate= {
+        {x: 50, y: 250}
+      }
+      textLayout = {
+        {x: -20, y: -20}
+      }
       styles={{
         links: {
              
               stroke: 'pink',
               strokeWidth: "5px",
-            },
+            }
      }}
        />
     </>
