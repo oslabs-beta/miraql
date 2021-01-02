@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/server.js & electron .",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development nodemon server/server.js & webpack-dev-server --open"
+    "dev": "NODE_ENV=development nodemon server/server.js & webpack-dev-server --open",
+    "test": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
@@ -36,6 +37,7 @@
     "prettier": "^2.1.2",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
+    "supertest": "^6.0.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.11.0"
