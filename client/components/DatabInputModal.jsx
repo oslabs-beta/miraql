@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Schema from './Schema.jsx'
+import SchemaCards from './SchemaCards.jsx'
 import {
   Modal,
   ModalOverlay,
@@ -223,8 +224,9 @@ const isTrueOrFalse = (bool) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <Schema {...inputs} tableName={ourTableName}/>
+      {/* <Schema {...inputs} tableName={ourTableName}/> */}
       {/* pass down state using NEW COMPONENT WITH CARDS */}
+      <SchemaCards />
     </>
   )
 };

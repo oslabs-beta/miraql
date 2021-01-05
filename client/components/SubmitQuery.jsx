@@ -23,7 +23,8 @@ import 'codemirror/addon/edit/closebrackets';
 import '../styles/style.css';
 import DatabInputModal from './DatabInputModal.jsx';
 import Schema from './Schema.jsx';
-import Metrics from './Metrics.jsx'
+import Metrics from './Metrics.jsx';
+import SchemaCards from './SchemaCards.jsx'
 
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
@@ -107,6 +108,7 @@ function SubmitQuery({ urlValue }) {
         <TabPanel>
           <DatabInputModal />
           {/* new tables card component? */}
+          {/* <SchemaCards /> */}
         </TabPanel>
         <TabPanel>
           <Schema />
