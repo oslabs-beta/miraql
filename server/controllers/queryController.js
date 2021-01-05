@@ -2,20 +2,32 @@ const db = require('../models/queryModels');
 
 const queryController = {};
 
-queryController.getCharacters = (req, res, next) => {
-  // write code here
-  const sqlStr =
-    'SELECT ;
-  db.query(sqlStr)
+// should create a new row in the user_tables table
+  // req.body would send the 'table_name'
+
+// input multiple rows in the 
+// grabbing all the fields from the req.body
+// query would be like: INSERT INTO table_name (col, col, col etc) VALUES ($1, $2, $3 etc
+// 
+
+// should create a new item in the database
+queryController.postTask = (req, res, next) => {
+  const { item } = req.body;
+  const text = `INSERT INTO Tasks (item) VALUES ($1)`;
+
+  // request sent from server to db (like fetch), passing in our query
+  pool.query(text, [item])
     .then((data) => {
-      res.locals.characters = data.rows;
+      res.status(200).send(`Task added with ID: ${data.insertId}`);
       next();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 // should create a new item in the database
-taskController.postTask = (req, res, next) => {
+queryController.postTask = (req, res, next) => {
   const { item } = req.body;
   const text = `INSERT INTO Tasks (item) VALUES ($1)`;
 
@@ -31,7 +43,7 @@ taskController.postTask = (req, res, next) => {
 };
 
 // should find items in the database based on an ID number and delete that item if it exists
-taskController.deleteTask = (req, res, next) => {
+queryController.deleteTask = (req, res, next) => {
   // query Task table based on id and delete if item exists
   const id = parseInt(req.params.id);
   const text = `DELETE FROM Tasks WHERE id = $1`;

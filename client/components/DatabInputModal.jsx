@@ -82,7 +82,7 @@ const handleAddClick = () => {
 // this is not currently being used or working
 const isTrueOrFalse = (bool) => {
   return !bool;
-}
+};
 
 // this function is to add a new row of inputs to the table
 // const handleAddRow = 

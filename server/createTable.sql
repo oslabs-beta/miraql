@@ -1,9 +1,9 @@
-CREATE TABLE all_tables {
+CREATE TABLE user_tables {
   id SERIAL PRIMARY KEY,
-  name VARCHAR(140),
+  table_name VARCHAR(50),
 };
 
-CREATE TABLE table_name_here (
+CREATE TABLE fields (
   id SERIAL PRIMARY KEY,
   field_name VARCHAR(140) NOT NULL,
   field_type VARCHAR(140) NOT NULL,
@@ -16,4 +16,5 @@ CREATE TABLE table_name_here (
   field_relationship VARCHAR(140) NOT NULL,
   type_relationship VARCHAR(140),
   created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  user_tables_id INT FOREIGN KEY
 );
