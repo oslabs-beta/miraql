@@ -22,6 +22,8 @@ import 'codemirror/addon/edit/closebrackets';
 
 import '../styles/style.css';
 import DatabInputModal from './DatabInputModal.jsx';
+import Schema from './Schema.jsx';
+import Metrics from './Metrics.jsx'
 
 function SubmitQuery({ urlValue }) {
   // react hooks to hold query in state
@@ -60,7 +62,6 @@ function SubmitQuery({ urlValue }) {
           </TabList>
           <TabPanels>
             <TabPanel>
-              {/* <Stack direction={'column'}> */}
               <CodeMirror
                 value={query}
                 options={{
@@ -84,7 +85,6 @@ function SubmitQuery({ urlValue }) {
               >
                 Submit
               </Button>
-              {/* </Stack> */}
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -97,26 +97,28 @@ function SubmitQuery({ urlValue }) {
         />
       </GridItem>
       <GridItem bg="#F7FAFC" colStart={6} colEnd={11}>
-        <DatabInputModal />
+        <Tabs variant="enclosed" colorScheme="pink">
+        <TabList>
+          <Tab>Add Tables</Tab>
+          <Tab>Schema</Tab>
+          <Tab>Metrics</Tab>
+        </TabList>
+        <TabPanels>
+        <TabPanel>
+          <DatabInputModal />
+          {/* new tables card component? */}
+        </TabPanel>
+        <TabPanel>
+          <Schema />
+        </TabPanel>
+        <TabPanel>
+          <Metrics query={query} urlValue={urlValue} fetchResponse={fetchResponse}/>
+        </TabPanel>
+        </TabPanels>
+        </Tabs>
       </GridItem>
     </Grid>
   );
 }
 
 export default SubmitQuery;
-
-// working tree was not clean, added to submit query
-// also what is this
-// try {
-//   const queryResponse = await fetch(`${urlValue}`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-type': 'application/json',
-//     },
-//     body: JSON.stringify({ query: query }),
-//   })
-//     .then((res) => res.json())
-//     .then((res) => console.log('fetch response', res));
-// } catch (error) {
-//   console.log('fetch error', error);
-// }

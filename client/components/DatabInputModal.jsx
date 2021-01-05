@@ -224,6 +224,7 @@ const isTrueOrFalse = (bool) => {
         </ModalContent>
       </Modal>
       <Schema {...inputs} tableName={ourTableName}/>
+      {/* pass down state using NEW COMPONENT WITH CARDS */}
     </>
   )
 };
