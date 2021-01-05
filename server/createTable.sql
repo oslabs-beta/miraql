@@ -1,7 +1,7 @@
-CREATE TABLE user_tables {
+CREATE TABLE schema_list (
   id SERIAL PRIMARY KEY,
-  table_name VARCHAR(50),
-};
+  table_name VARCHAR(50)
+);
 
 CREATE TABLE fields (
   id SERIAL PRIMARY KEY,
@@ -15,6 +15,6 @@ CREATE TABLE fields (
   table_relationship VARCHAR(140) NOT NULL,
   field_relationship VARCHAR(140) NOT NULL,
   type_relationship VARCHAR(140),
-  created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  user_tables_id INT FOREIGN KEY
+  created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  schema_list_id INT FOREIGN KEY
 );

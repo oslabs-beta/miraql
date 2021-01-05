@@ -16,13 +16,21 @@ app.get('/', (req, res) => {
 });
 }
 
-// make endpoint routes for our CRUD middleware
-app.post('/usertable', queryController.addRowUserTable);
-app.post('/schemas', queryController.createSchemaTable);
-app.post('/schemas', queryController.addRowSchemaTable);
-app.patch('/schemas', queryController.editRowSchemaTable);
-app.delete('/schemas', queryController.deleteRowSchemaTable);
-app.delete('/schemas', queryController.deleteSchemaTable);
+// ROUTE HANDLERS FOR MIDDLEWARE CRUD FUNCTIONALITY: 
+// Initial POST request to add a new row to our schema_list and add all the field rows to the fields table
+app.post('/schema',
+  queryController.addRowSchemaList, queryController.addManyFieldsRows);
+// DELETE request to delete row(s) by ID(s)
+app.delete('/fields/:id', queryController.deleteFieldsRow);
+// DELETE request to delete a row in the schema_list table
+app.delete('/schema/:id', queryController.deleteSchemaRow);
+
+/* STRETCH FEATURES:
+additional endpoints to add/edit rows in the fields table */
+// POST request to add row(s) to field table where table_name already exists
+app.post('/schemas/:id', queryController.addFieldsRow);
+// PATCH request to edit the fields in an existing row in the fields table
+app.patch('/fields/:id', queryController.editFieldsRow);
 
 
 // catch-all route handler for any requests to an unknown route
