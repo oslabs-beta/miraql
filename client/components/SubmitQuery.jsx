@@ -34,6 +34,8 @@ function SubmitQuery({ urlValue }) {
   let [queryResponseTime, setQueryResponseTime] = useState([]);
   // hook to hold query number in state
   let [queryTitle, setQueryNumber] = useState([]);
+  // hook to catch errors in fetch request
+  let [errors, setErrors] = useState(false);
 
   // handle query text input change
   const handleQueryChange = (e) => {
@@ -110,6 +112,7 @@ function SubmitQuery({ urlValue }) {
           urlValue={urlValue}
           query={query}
           fetchResponse={fetchResponse}
+          errors={errors}
         />
       </GridItem>
       <GridItem bg="#F7FAFC" colStart={6} colEnd={11}>
