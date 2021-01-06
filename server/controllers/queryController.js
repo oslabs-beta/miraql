@@ -61,11 +61,13 @@ queryController.addManyFieldsRows = (req, res, next) => {
   // `SELECT id FROM schema_list WHERE schema_name = ($1)demo-schema`
   const getIdString = `SELECT id FROM schema_list WHERE schema_name = $1`;
   // $1 is going to point to [req.body.tableName]
-  const getIdParam = [req.body.tableName];
+  const getIdParam = [req.body[0].tableName];
+  console.log('getIdParam', getIdParam);
   // once we query this, save it to a variable, and pass that variable to our INSERT statement as the foreign key
-  const idNumber = db
-    .query(getIdString, getIdParam)
-    .then((data) => console.log('this is our data fom idNumber', data));
+  let idNumber = ;
+  db.query(getIdString, getIdParam).then((data) => data.rows[0].id);
+  // data.rows[0].id
+  console.log(idNumber);
 
   for (let i = 0; i < arr.length; i++) {
     const userFieldName = arr[i].fieldName;
@@ -79,18 +81,18 @@ queryController.addManyFieldsRows = (req, res, next) => {
     const userFieldRelate = arr[i].userFieldRelate;
     const userTypeRelate = arr[i].userTypeRelate;
 
-    console.log(
-      'userFieldName: ',
-      userFieldName,
-      'userFieldType: ',
-      userFieldType,
-      'userDefaultValue:',
-      userDefaultValue,
-      'userPrimaryKey: ',
-      userPrimaryKey,
-      'userUnique: ',
-      userUnique
-    );
+    // console.log(
+    //   'userFieldName: ',
+    //   userFieldName,
+    //   'userFieldType: ',
+    //   userFieldType,
+    //   'userDefaultValue:',
+    //   userDefaultValue,
+    //   'userPrimaryKey: ',
+    //   userPrimaryKey,
+    //   'userUnique: ',
+    //   userUnique
+    // );
 
     let concatStr =
       '(' +
@@ -128,12 +130,12 @@ queryController.addManyFieldsRows = (req, res, next) => {
   // console.log(lengthSlice, 'lengthSlice');
   let newDbQuery = newDB.slice(0, lengthSlice);
   // console.log(newDbQuery, 'newDbQuery');
-  console.log('this is the new DB query, pls work! ', newDbQuery);
+  // console.log('this is the new DB query, pls work! ', newDbQuery);
 
   db.query(newDbQuery)
     .then((data) => {
-      console.log('data ln 120: ', data);
-      console.log(`this is the data from the user's rows table: `, data.rows);
+      // console.log('data ln 120: ', data);
+      // console.log(`this is the data from the user's rows table: `, data.rows);
       res.status(200).send(`Rows added to fields table`);
       next();
       // res.locals.userCart = data.rows;
