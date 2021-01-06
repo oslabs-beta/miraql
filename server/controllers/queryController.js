@@ -5,7 +5,7 @@ const queryController = {};
 // GET request to get all db info for schema_list and fields tables
 queryController.getAllSchemaList = (req, res, next) => {
   // schema_name, field_name, field_type
-  const { schema_name, field_name, field_type,  } = req.body;
+  const { schema_name, field_name, field_type } = req.body;
   // const item = `SELECT * FROM schema_list, fields WHERE schema_list`
   const text = `SELECT * FROM "public"."schema_list" LIMIT 100`;
   db.query(text)
@@ -36,7 +36,7 @@ queryController.getAllFields = (req, res, next) => {
 };
 
 // POST request: creates a new row in the schema_list table
-  // req.body would send the 'schema_name'
+// req.body would send the 'schema_name'
 queryController.addRowSchemaList = (req, res, next) => {
   const { schema_name } = req.body;
   // console.log(schema_name, 'schema_name')
@@ -60,47 +60,52 @@ queryController.addManyFieldsRows = (req, res, next) => {
   let addToSchema = '';
 
   for (let i = 0; i < arr.length; i++) {
-    const userFieldName = arr[i].fieldName
+    const userFieldName = arr[i].fieldName;
     const userFieldType = arr[i].fieldType;
     const userDefaultValue = arr[i].defaultValue;
     const userPrimaryKey = arr[i].primaryKey;
-    const userUnique = arr[i].unique;
-    const userRequired = arr[i].required;
-    const userQueryable = arr[i].queryable;
-    const userTableRelate = arr[i].tableRelationship;
-    const userFieldRelate = arr[i].fieldRelationship;
-    const userTypeRelate = arr[i].typeRelationship;
-    // console.log(
-    //   'userFieldName: ',
-    //   userFieldName,
-    //   'userFieldType: ',
-    //   userFieldType,
-    //   'userDefaultValue:',
-    //   userDefaultValue
-    // );
+    const userUnique = arr[i].userUnique;
+    const userRequired = arr[i].userRequired;
+    const userQueryable = arr[i].userQueryable;
+    const userTableRelate = arr[i].userTableRelate;
+    const userFieldRelate = arr[i].userFieldRelate;
+    const userTypeRelate = arr[i].userTypeRelate;
 
-    let concatStr =    
+    console.log(
+      'userFieldName: ',
+      userFieldName,
+      'userFieldType: ',
+      userFieldType,
+      'userDefaultValue:',
+      userDefaultValue,
+      'userPrimaryKey: ',
+      userPrimaryKey,
+      'userUnique: ',
+      userUnique
+    );
+
+    let concatStr =
       '(' +
-        `${userFieldName}` +
-      ', ' +
-      `${userFieldType}` +
-      ', ' +
-      `${userDefaultValue}` +
-      ', ' +
-      `${userPrimaryKey}` +
-      ', ' +
-      `${userUnique}` +
-      ', ' +
-      `${userRequired}` +
-      ', ' +
-      `${userQueryable}` +
-      ', ' +
-      `${userTableRelate}` +
-      ', ' +
-      `${userFieldRelate}` +
-      ', ' +
-      `${userTypeRelate}` +
-      '), ';
+      `'${userFieldName}'` +
+      ',' +
+      `'${userFieldType}'` +
+      ',' +
+      `'${userDefaultValue}'` +
+      ',' +
+      `'${userPrimaryKey}'` +
+      ',' +
+      `'${userUnique}'` +
+      ',' +
+      `'${userRequired}'` +
+      ',' +
+      `'${userQueryable}'` +
+      ',' +
+      `'${userTableRelate}'` +
+      ',' +
+      `'${userFieldRelate}'` +
+      ',' +
+      `'${userTypeRelate}'` +
+      '),';
     // console.log('this is the concatenated string', concatStr);
     addToSchema = addToSchema + concatStr;
     // console.log('this is our addToSchema query after concat:', addToSchema);
@@ -109,7 +114,7 @@ queryController.addManyFieldsRows = (req, res, next) => {
 
   let newDB = oldDbQuery + addToSchema;
   // console.log(newDB, 'newDB');
-  let lengthSlice = newDB.length - 2;
+  let lengthSlice = newDB.length - 1;
   // console.log(lengthSlice, 'lengthSlice');
   let newDbQuery = newDB.slice(0, lengthSlice);
   // console.log(newDbQuery, 'newDbQuery');
@@ -117,7 +122,7 @@ queryController.addManyFieldsRows = (req, res, next) => {
 
   db.query(newDbQuery)
     .then((data) => {
-      console.log('data ln 120: ', data)
+      console.log('data ln 120: ', data);
       console.log(`this is the data from the user's rows table: `, data.rows);
       res.status(200).send(`Rows added to fields table`);
       next();
@@ -127,7 +132,6 @@ queryController.addManyFieldsRows = (req, res, next) => {
       console.log('ERROR: No rows added.', err);
     });
 };
-
 
 // DELETE request: to delete a row from the fields table
 queryController.deleteFieldsRow = (req, res, next) => {
@@ -159,16 +163,11 @@ queryController.deleteSchemaRow = (req, res, next) => {
     });
 };
 
-/* STRETCH FEATURES*/ 
+/* STRETCH FEATURES*/
 // POST request that adds a new row to fields table w/ existing schema_name
-queryController.addFieldsRow = (req, res, next) => {
-
-};
+queryController.addFieldsRow = (req, res, next) => {};
 
 // PATCH request to edit/update existing fields in an existing fields/schema table
-queryController.editFieldsRow = (req, res, next) => {
-
-};
-
+queryController.editFieldsRow = (req, res, next) => {};
 
 module.exports = queryController;
