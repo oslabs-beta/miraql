@@ -64,85 +64,87 @@ queryController.addManyFieldsRows = (req, res, next) => {
   const getIdParam = [req.body[0].tableName];
   console.log('getIdParam', getIdParam);
   // once we query this, save it to a variable, and pass that variable to our INSERT statement as the foreign key
-  let idNumber = ;
-  db.query(getIdString, getIdParam).then((data) => data.rows[0].id);
+  let idNumber = 0;
+  db.query(getIdString, getIdParam).then((data) => {
+    idNumber = data.rows[0].id;
+    console.log('inside query', idNumber);
+    for (let i = 0; i < arr.length; i++) {
+      const userFieldName = arr[i].fieldName;
+      const userFieldType = arr[i].fieldType;
+      const userDefaultValue = arr[i].defaultValue;
+      const userPrimaryKey = arr[i].primaryKey;
+      const userUnique = arr[i].userUnique;
+      const userRequired = arr[i].userRequired;
+      const userQueryable = arr[i].userQueryable;
+      const userTableRelate = arr[i].userTableRelate;
+      const userFieldRelate = arr[i].userFieldRelate;
+      const userTypeRelate = arr[i].userTypeRelate;
+
+      // console.log(
+      //   'userFieldName: ',
+      //   userFieldName,
+      //   'userFieldType: ',
+      //   userFieldType,
+      //   'userDefaultValue:',
+      //   userDefaultValue,
+      //   'userPrimaryKey: ',
+      //   userPrimaryKey,
+      //   'userUnique: ',
+      //   userUnique
+      // );
+
+      let concatStr =
+        '(' +
+        `'${userFieldName}'` +
+        ',' +
+        `'${userFieldType}'` +
+        ',' +
+        `'${userDefaultValue}'` +
+        ',' +
+        `'${userPrimaryKey}'` +
+        ',' +
+        `'${userUnique}'` +
+        ',' +
+        `'${userRequired}'` +
+        ',' +
+        `'${userQueryable}'` +
+        ',' +
+        `'${userTableRelate}'` +
+        ',' +
+        `'${userFieldRelate}'` +
+        ',' +
+        `'${userTypeRelate}'` +
+        ',' +
+        `${idNumber}` +
+        '),';
+      // console.log('this is the concatenated string', concatStr);
+      addToSchema = addToSchema + concatStr;
+      // console.log('this is our addToSchema query after concat:', addToSchema);
+    }
+    let oldDbQuery = `INSERT INTO fields (field_name, field_type, default_value, primary_key, unique_bool, required_bool, queryable, table_relationship, field_relationship, type_relationship, schema_list_id) VALUES `;
+
+    let newDB = oldDbQuery + addToSchema;
+    // console.log(newDB, 'newDB');
+    let lengthSlice = newDB.length - 1;
+    // console.log(lengthSlice, 'lengthSlice');
+    let newDbQuery = newDB.slice(0, lengthSlice);
+    // console.log(newDbQuery, 'newDbQuery');
+    // console.log('this is the new DB query, pls work! ', newDbQuery);
+
+    db.query(newDbQuery)
+      .then((data) => {
+        // console.log('data ln 120: ', data);
+        // console.log(`this is the data from the user's rows table: `, data.rows);
+        res.status(200).send(`Rows added to fields table`);
+        next();
+        // res.locals.userCart = data.rows;
+      })
+      .catch((err) => {
+        console.log('ERROR: No rows added.', err);
+      });
+  });
+
   // data.rows[0].id
-  console.log(idNumber);
-
-  for (let i = 0; i < arr.length; i++) {
-    const userFieldName = arr[i].fieldName;
-    const userFieldType = arr[i].fieldType;
-    const userDefaultValue = arr[i].defaultValue;
-    const userPrimaryKey = arr[i].primaryKey;
-    const userUnique = arr[i].userUnique;
-    const userRequired = arr[i].userRequired;
-    const userQueryable = arr[i].userQueryable;
-    const userTableRelate = arr[i].userTableRelate;
-    const userFieldRelate = arr[i].userFieldRelate;
-    const userTypeRelate = arr[i].userTypeRelate;
-
-    // console.log(
-    //   'userFieldName: ',
-    //   userFieldName,
-    //   'userFieldType: ',
-    //   userFieldType,
-    //   'userDefaultValue:',
-    //   userDefaultValue,
-    //   'userPrimaryKey: ',
-    //   userPrimaryKey,
-    //   'userUnique: ',
-    //   userUnique
-    // );
-
-    let concatStr =
-      '(' +
-      `'${userFieldName}'` +
-      ',' +
-      `'${userFieldType}'` +
-      ',' +
-      `'${userDefaultValue}'` +
-      ',' +
-      `'${userPrimaryKey}'` +
-      ',' +
-      `'${userUnique}'` +
-      ',' +
-      `'${userRequired}'` +
-      ',' +
-      `'${userQueryable}'` +
-      ',' +
-      `'${userTableRelate}'` +
-      ',' +
-      `'${userFieldRelate}'` +
-      ',' +
-      `'${userTypeRelate}'` +
-      ',' +
-      `${idNumber}` +
-      '),';
-    // console.log('this is the concatenated string', concatStr);
-    addToSchema = addToSchema + concatStr;
-    // console.log('this is our addToSchema query after concat:', addToSchema);
-  }
-  let oldDbQuery = `INSERT INTO fields (field_name, field_type, default_value, primary_key, unique_bool, required_bool, queryable, table_relationship, field_relationship, type_relationship, schema_list_id) VALUES `;
-
-  let newDB = oldDbQuery + addToSchema;
-  // console.log(newDB, 'newDB');
-  let lengthSlice = newDB.length - 1;
-  // console.log(lengthSlice, 'lengthSlice');
-  let newDbQuery = newDB.slice(0, lengthSlice);
-  // console.log(newDbQuery, 'newDbQuery');
-  // console.log('this is the new DB query, pls work! ', newDbQuery);
-
-  db.query(newDbQuery)
-    .then((data) => {
-      // console.log('data ln 120: ', data);
-      // console.log(`this is the data from the user's rows table: `, data.rows);
-      res.status(200).send(`Rows added to fields table`);
-      next();
-      // res.locals.userCart = data.rows;
-    })
-    .catch((err) => {
-      console.log('ERROR: No rows added.', err);
-    });
 };
 
 // DELETE request: to delete a row from the fields table
