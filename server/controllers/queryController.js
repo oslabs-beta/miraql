@@ -39,12 +39,12 @@ queryController.getAllFields = (req, res, next) => {
   // req.body would send the 'schema_name'
 queryController.addRowSchemaList = (req, res, next) => {
   const { schema_name } = req.body;
-  console.log(schema_name, 'schema_name')
+  // console.log(schema_name, 'schema_name')
   const text = `INSERT INTO schema_list (schema_name) VALUES ($1)`;
 
   db.query(text, [schema_name])
     .then((data) => {
-      console.log(data, 'data')
+      // console.log(data, 'data')
       res.status(200).send('schema_name added to schema_list table');
       next();
     })
@@ -70,65 +70,61 @@ queryController.addManyFieldsRows = (req, res, next) => {
     const userTableRelate = arr[i].tableRelationship;
     const userFieldRelate = arr[i].fieldRelationship;
     const userTypeRelate = arr[i].typeRelationship;
-    console.log(
-      'userFieldName: ',
-      userFieldName,
-      'userFieldType: ',
-      userFieldType,
-      'userDefaultValue:',
-      userDefaultValue
-    );
+    // console.log(
+    //   'userFieldName: ',
+    //   userFieldName,
+    //   'userFieldType: ',
+    //   userFieldType,
+    //   'userDefaultValue:',
+    //   userDefaultValue
+    // );
 
-    let concatStr =
-      `${userFieldName}` +
-      ',' +
+    let concatStr =    
+      '(' +
+        `${userFieldName}` +
+      ', ' +
       `${userFieldType}` +
-      ',' +
+      ', ' +
       `${userDefaultValue}` +
-      ',' +
+      ', ' +
       `${userPrimaryKey}` +
-      ',' +
+      ', ' +
       `${userUnique}` +
-      ',' +
+      ', ' +
       `${userRequired}` +
-      ',' +
+      ', ' +
       `${userQueryable}` +
-      ',' +
+      ', ' +
       `${userTableRelate}` +
-      ',' +
+      ', ' +
       `${userFieldRelate}` +
-      ',' +
+      ', ' +
       `${userTypeRelate}` +
-      '),';
-    console.log('this is the concatenated string', concatStr);
+      '), ';
+    // console.log('this is the concatenated string', concatStr);
     addToSchema = addToSchema + concatStr;
-    console.log('this is our addToSchema query after concat:', addToSchema);
+    // console.log('this is our addToSchema query after concat:', addToSchema);
   }
-  let oldDbQuery = `INSERT INTO fields (field_name, field_type, default_value, primary_key, unique_bool, required_bool, queryable, table_relationship, field_relationship, type_relationship) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) `;
+  let oldDbQuery = `INSERT INTO fields (field_name, field_type, default_value, primary_key, unique_bool, required_bool, queryable, table_relationship, field_relationship, type_relationship) VALUES `;
 
   let newDB = oldDbQuery + addToSchema;
-  console.log(newDB, 'newDB');
-  let lengthSlice = newDB.length - 1;
-  console.log(lengthSlice, 'lengthSlice');
+  // console.log(newDB, 'newDB');
+  let lengthSlice = newDB.length - 2;
+  // console.log(lengthSlice, 'lengthSlice');
   let newDbQuery = newDB.slice(0, lengthSlice);
-  console.log(newDbQuery, 'newDbQuery');
+  // console.log(newDbQuery, 'newDbQuery');
   console.log('this is the new DB query, pls work! ', newDbQuery);
 
   db.query(newDbQuery)
     .then((data) => {
+      console.log('data ln 120: ', data)
       console.log(`this is the data from the user's rows table: `, data.rows);
-      res.locals.userCart = data.rows;
+      res.status(200).send(`Rows added to fields table`);
+      next();
+      // res.locals.userCart = data.rows;
     })
-    .then(next)
-    .catch(() => {
-      // next(err)
-      next({
-        log: `queryController.createSchemaTable: ERROR: Error putting the user schema into the db`,
-        message: {
-          err:
-            'Error occurred in carqueryController.createSchemaTable. Check server logs for more details.',
-        },
-      });
+    .catch((err) => {
+      console.log('ERROR: No rows added.', err);
     });
 };
 
