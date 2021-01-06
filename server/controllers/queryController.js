@@ -2,15 +2,50 @@ const db = require('../models/queryModels');
 
 const queryController = {};
 
-// POST request: creates a new row in the schema_list table
-  // req.body would send the 'table_name'
-queryController.addRowSchemaList = (req, res, next) => {
-  const { table_name } = req.body;
-  const text = `INSERT INTO schema_list (table_name) VALUES ($1)`;
-
-  db.query(text, [table_name])
+// GET request to get all db info for schema_list and fields tables
+queryController.getAllSchemaList = (req, res, next) => {
+  // schema_name, field_name, field_type
+  const { schema_name, field_name, field_type,  } = req.body;
+  // const item = `SELECT * FROM schema_list, fields WHERE schema_list`
+  const text = `SELECT * FROM "public"."schema_list" LIMIT 100`;
+  db.query(text)
     .then((data) => {
-      res.status(200).send(`table_name added to schema_list table with ID: ${data.insertId}`);
+      // console.log('getAllSchemaList is: ', data);
+      res.status(200).json(data.rows);
+      next();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+queryController.getAllFields = (req, res, next) => {
+  // schema_name, field_name, field_type
+  const { id, field_name, field_type } = req.body;
+  // const item = `SELECT * FROM schema_list, fields WHERE schema_list`
+  const text = `SELECT * FROM "public"."fields" LIMIT 100`;
+  db.query(text)
+    .then((data) => {
+      // console.log('getAllFields is: ', data);
+      res.status(200).json(data.rows);
+      next();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// POST request: creates a new row in the schema_list table
+  // req.body would send the 'schema_name'
+queryController.addRowSchemaList = (req, res, next) => {
+  const { schema_name } = req.body;
+  console.log(schema_name, 'schema_name')
+  const text = `INSERT INTO schema_list (schema_name) VALUES ($1)`;
+
+  db.query(text, [schema_name])
+    .then((data) => {
+      console.log(data, 'data')
+      res.status(200).send('schema_name added to schema_list table');
       next();
     })
     .catch((err) => {
@@ -22,7 +57,7 @@ queryController.addRowSchemaList = (req, res, next) => {
 queryController.addManyFieldsRows = (req, res, next) => {
   const arr = req.body;
   // we will get an array of objects with multiple rows that will need to be added
-  let addToTable = '';
+  let addToSchema = '';
 
   for (let i = 0; i < arr.length; i++) {
     const userFieldName = arr[i].fieldName
@@ -66,12 +101,12 @@ queryController.addManyFieldsRows = (req, res, next) => {
       `${userTypeRelate}` +
       '),';
     console.log('this is the concatenated string', concatStr);
-    addToTable = addToTable + concatStr;
-    console.log('this is our addToTable query after concat:', addToTable);
+    addToSchema = addToSchema + concatStr;
+    console.log('this is our addToSchema query after concat:', addToSchema);
   }
-  let oldDbQuery = `INSERT INTO user_field_names (fieldName, fieldType, defaultValue, primaryKey, unique, required, queryable, tableRelationship, fieldRelationship, typeRelationship) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) `;
+  let oldDbQuery = `INSERT INTO fields (field_name, field_type, default_value, primary_key, unique_bool, required_bool, queryable, table_relationship, field_relationship, type_relationship) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) `;
 
-  let newDB = oldDbQuery + addToTable;
+  let newDB = oldDbQuery + addToSchema;
   console.log(newDB, 'newDB');
   let lengthSlice = newDB.length - 1;
   console.log(lengthSlice, 'lengthSlice');
@@ -129,7 +164,7 @@ queryController.deleteSchemaRow = (req, res, next) => {
 };
 
 /* STRETCH FEATURES*/ 
-// POST request that adds a new row to fields table w/ existing table_name
+// POST request that adds a new row to fields table w/ existing schema_name
 queryController.addFieldsRow = (req, res, next) => {
 
 };
