@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
 
-const SchemaCards = ({ query, urlValue, fetchResponse }) => {
+const SchemaCards = () => {
+
+  const [schemaResponse, setResponse] = useState([])
+
+  // fetch request to get all the table names and field information for our tables
+  // useEffect(() => {
+  //   fetch('/schemas')
+  //   .then(res => {
+  //     setResponse(res)
+  //   }, [])
+  //   .then(res => console.log(res))
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  // })
+
+
   return (
     <>
+    {/* {schemaResponse.map(element =>)} */}
     <br></br>
     <br></br>
     <h2>Books</h2>
@@ -33,7 +50,7 @@ const SchemaCards = ({ query, urlValue, fetchResponse }) => {
         </Tr>
       </Tbody>
     </Table>
-
+    
     </>
   );
 };
