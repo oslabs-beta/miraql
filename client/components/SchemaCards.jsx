@@ -25,7 +25,7 @@ const SchemaCards = () => {
       });
   }, []);
 
-  console.log("this is the schemaResponse", schemaResponse);
+  // console.log("this is the schemaResponse", schemaResponse);
 
   useEffect(() => {
     fetch("/field")
@@ -38,7 +38,7 @@ const SchemaCards = () => {
       });
   }, []);
 
-  console.log("this is the field response", fieldResponse);
+  // console.log("this is the field response", fieldResponse);
 
   return (
     <>

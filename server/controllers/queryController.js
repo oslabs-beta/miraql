@@ -1,4 +1,4 @@
-const db = require('../models/queryModels');
+const db = require("../models/queryModels");
 
 const queryController = {};
 
@@ -38,14 +38,14 @@ queryController.getAllFields = (req, res, next) => {
 // POST request: creates a new row in the schema_list table
 // req.body would send the 'schema_name'
 queryController.addRowSchemaList = (req, res, next) => {
-  const { schema_name } = req.body;
+  const { ourTableName } = req.body;
   // console.log(schema_name, 'schema_name')
   const text = `INSERT INTO schema_list (schema_name) VALUES ($1)`;
 
-  db.query(text, [schema_name])
+  db.query(text, [ourTableName])
     .then((data) => {
       // console.log(data, 'data')
-      res.status(200).send('schema_name added to schema_list table');
+      res.status(200).send("schema_name added to schema_list table");
       next();
     })
     .catch((err) => {
@@ -57,66 +57,77 @@ queryController.addRowSchemaList = (req, res, next) => {
 queryController.addManyFieldsRows = (req, res, next) => {
   const arr = req.body;
   // we will get an array of objects with multiple rows that will need to be added
-  let addToSchema = '';
+  let addToSchema = "";
   // `SELECT id FROM schema_list WHERE schema_name = ($1)demo-schema`
   const getIdString = `SELECT id FROM schema_list WHERE schema_name = $1`;
+  console.log("this is the reqest body", req.body);
   // $1 is going to point to [req.body.tableName]
-  const getIdParam = [req.body[0].tableName];
-  console.log('getIdParam', getIdParam);
+  const getIdParam = [req.body.ourTableName];
+  console.log("getIdParam", getIdParam);
   // once we query this, save it to a variable, and pass that variable to our INSERT statement as the foreign key
   let idNumber = 0;
   db.query(getIdString, getIdParam).then((data) => {
+    console.log("we made it in here!!!!!");
+    console.log("this is our data", data);
     idNumber = data.rows[0].id;
-    console.log('inside query', idNumber);
-    for (let i = 0; i < arr.length; i++) {
-      const userFieldName = arr[i].fieldName;
-      const userFieldType = arr[i].fieldType;
-      const userDefaultValue = arr[i].defaultValue;
-      const userPrimaryKey = arr[i].primaryKey;
-      const userUnique = arr[i].userUnique;
-      const userRequired = arr[i].userRequired;
-      const userQueryable = arr[i].userQueryable;
-      const userTableRelate = arr[i].userTableRelate;
-      const userFieldRelate = arr[i].userFieldRelate;
-      const userTypeRelate = arr[i].userTypeRelate;
+    console.log("inside query", idNumber);
 
-      // console.log(
-      //   'userFieldName: ',
-      //   userFieldName,
-      //   'userFieldType: ',
-      //   userFieldType,
-      //   'userDefaultValue:',
-      //   userDefaultValue,
-      //   'userPrimaryKey: ',
-      //   userPrimaryKey,
-      //   'userUnique: ',
-      //   userUnique
-      // );
+    const inputsArray = req.body.inputs;
+    console.log("inputsarray", inputsArray);
+
+    for (let i = 0; i < inputsArray.length; i++) {
+      const userFieldName = inputsArray[i].fieldName;
+      const userFieldType = inputsArray[i].fieldType;
+      const userDefaultValue = inputsArray[i].defaultValue;
+      const userPrimaryKey = inputsArray[i].primaryKey;
+      const userUnique = inputsArray[i].unique;
+      const userRequired = inputsArray[i].required;
+      const userQueryable = inputsArray[i].queryable;
+      const userTableRelate = inputsArray[i].tableRelationship;
+      const userFieldRelate = inputsArray[i].fieldRelationship;
+      const userTypeRelate = inputsArray[i].typeRelationship;
+
+      console.log(
+        "userFieldName: ",
+        userFieldName,
+        "userFieldType: ",
+        userFieldType,
+        "userDefaultValue:",
+        userDefaultValue,
+        "userPrimaryKey: ",
+        userPrimaryKey,
+        "userUnique: ",
+        userUnique,
+        "userRequired",
+        userRequired,
+        "userQueryable",
+        userQueryable
+      );
 
       let concatStr =
-        '(' +
+        "(" +
         `'${userFieldName}'` +
-        ',' +
+        "," +
         `'${userFieldType}'` +
-        ',' +
+        "," +
         `'${userDefaultValue}'` +
-        ',' +
+        "," +
         `'${userPrimaryKey}'` +
-        ',' +
+        "," +
         `'${userUnique}'` +
-        ',' +
+        "," +
         `'${userRequired}'` +
-        ',' +
+        "," +
         `'${userQueryable}'` +
-        ',' +
+        "," +
         `'${userTableRelate}'` +
-        ',' +
+        "," +
         `'${userFieldRelate}'` +
-        ',' +
+        "," +
         `'${userTypeRelate}'` +
-        ',' +
+        "," +
         `${idNumber}` +
-        '),';
+        "),";
       // console.log('this is the concatenated string', concatStr);
       addToSchema = addToSchema + concatStr;
       // console.log('this is our addToSchema query after concat:', addToSchema);
@@ -129,7 +140,7 @@ queryController.addManyFieldsRows = (req, res, next) => {
     // console.log(lengthSlice, 'lengthSlice');
     let newDbQuery = newDB.slice(0, lengthSlice);
     // console.log(newDbQuery, 'newDbQuery');
-    // console.log('this is the new DB query, pls work! ', newDbQuery);
+    console.log("this is the new DB query, pls work! ", newDbQuery);
 
     db.query(newDbQuery)
       .then((data) => {
@@ -140,7 +151,7 @@ queryController.addManyFieldsRows = (req, res, next) => {
         // res.locals.userCart = data.rows;
       })
       .catch((err) => {
-        console.log('ERROR: No rows added.', err);
+        console.log("ERROR: No rows added.", err);
       });
   });
 
