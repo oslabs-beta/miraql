@@ -71,6 +71,7 @@
     "react-d3-tree": "^1.16.1",
     "react-dom": "^16.3.1",
     "react-hook-form": "^6.11.5",
+    "react-icons": "^4.1.0",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",

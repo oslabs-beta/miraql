@@ -1,55 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .CodeMirror {
-	border: 1px solid #eee;
-	min-height: 80%;
+  border: 1px solid #eee;
+  min-height: 80%;
 }
 
 #submitbutton {
-	margin-top: 20px;
-	float: right;
+  margin-top: 20px;
+  float: right;
 }
 
 Image {
-	object-position: center;
-	background-color: green;
+  object-position: center;
+  background-color: green;
 }
 
 h2 {
-	/* border: 2px solid green; */
-	padding: 0 0 0 5px;
-	margin: 0;
-	font-family: 'Roboto', sans-serif;
-	font-weight: 700;
-	color: #d53f8c;
+  /* border: 2px solid green; */
+  padding: 0 0 0 5px;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: #d53f8c;
 }
 
 .updateDelete {
-	border: 2px solid #d53f8c;
-	border-radius: 15%;
-	float: right;
-	background-color: #d53f8c;
-	color: white;
-	margin: 10px;
-	padding: 5px;
+  border: 2px solid #d53f8c;
+  border-radius: 15%;
+  float: right;
+  background-color: #d53f8c;
+  color: white;
+  margin: 10px;
+  padding: 5px;
 }
 
-
-table, th, td {
- border: 1px solid black;
- padding: 15px;
- border-collapse: collapse;
+table,
+th,
+td {
+  border: 1px solid black;
+  padding: 15px;
+  border-collapse: collapse;
 }
 
 .tableHeader {
-	padding: 15px;
+  padding: 15px;
 }
 
 th {
-	text-align: left;
+  text-align: left;
 }
 
 table {
-	border-spacing: 5px;
-	background-color: white;
+  border-spacing: 5px;
+  background-color: white;
 }
