@@ -91,6 +91,14 @@ function Schema(props) {
   // console.log(props)
   const [schemaResponse, setResponse] = useState([]);
   const [fieldResponse, setFields] = useState([]);
+  const [updateState, stateUpdates] = useState();
+
+  let stateBoolean = true;
+
+  function handleUpdate() {
+    console.log('that update was handled')
+    stateUpdates({})
+  }
 
   // fetch request to get all the table names and field information for our tables
   useEffect(() => {
@@ -102,7 +110,7 @@ function Schema(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [updateState]);
 
   // console.log("this is the schemaResponse", schemaResponse);
 
@@ -115,12 +123,13 @@ function Schema(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [updateState]);
 
   // console.log("this is the field response", fieldResponse);
 
   return (
     <>
+        <button onClick={handleUpdate}>Render Schema</button>
       <Tree
         data={schemaTreeData}
         nodeSvgShape={svgSquare}
