@@ -1,22 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Tree from 'react-d3-tree';
+import React, { useContext, useEffect, useState } from "react";
+import Tree from "react-d3-tree";
 
-
-
-
- // fetch request to get all the table names and field information for our tables
-  // useEffect(() => {
-  //   fetch('/schemas')
-  //   .then(res => {
-  //     setResponse(res)
-  //   }, [])
-  //   .then(res => console.log(res))
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-  // })
-
-  
 // const myTreeData = [
 //   {
 //     name: "Queries",
@@ -88,23 +72,52 @@ import Tree from 'react-d3-tree';
 
 const schemaTreeData = [
   {
-    name: 'Queries',
+    name: "Queries",
   },
 ];
 
 const svgSquare = {
-  shape: 'rect',
+  shape: "rect",
   shapeProps: {
     width: 20,
     height: 20,
     x: -10,
     y: -10,
-    fill: 'pink',
+    fill: "pink",
   },
 };
 
 function Schema(props) {
   // console.log(props)
+  const [schemaResponse, setResponse] = useState([]);
+  const [fieldResponse, setFields] = useState([]);
+
+  // fetch request to get all the table names and field information for our tables
+  useEffect(() => {
+    fetch("/schema")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => setResponse(res))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // console.log("this is the schemaResponse", schemaResponse);
+
+  useEffect(() => {
+    fetch("/field")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => setFields(res))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // console.log("this is the field response", fieldResponse);
 
   return (
     <>
@@ -115,8 +128,8 @@ function Schema(props) {
         textLayout={{ x: -20, y: -20 }}
         styles={{
           links: {
-            stroke: 'pink',
-            strokeWidth: '5px',
+            stroke: "pink",
+            strokeWidth: "5px",
           },
         }}
       />
