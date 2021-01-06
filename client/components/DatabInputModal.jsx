@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Schema from './Schema.jsx'
+import SchemaCards from './SchemaCards.jsx'
 import {
   Modal,
   ModalOverlay,
@@ -46,7 +47,7 @@ let [inputs, setInputs] = useState([copyOfInitValues]);
 // create a state for tableName
 let [ourTableName, setTableName] = useState('')
 
-const changeTableName = fieldName => ({target}) => setTableName({[fieldName]:target.value})
+const changeTableName = fieldName => ({target}) => setTableName(target.value)
 
 // this function handles changes to the initial input field state (1st row being added)
 // const onChangeForField = fieldName => ({target}) => setInputs(state => ({...state,[fieldName]:target.value}));
@@ -84,12 +85,22 @@ const isTrueOrFalse = (bool) => {
   return !bool;
 }
 
-// this function is to add a new row of inputs to the table
-// const handleAddRow = 
-  // we're expecting:
-  // to create a new row of input fields which we want to save the state of onChange,
-  // to not override our existing state but add to it 
-  // 
+// this function runs when the save button is clicked, it runs a post request to the database and then it empties out the modal and resets state
+const saveButtonClick = () => {
+
+  fetch('/schemas', {
+    headers: { 'Content-type': 'application/json'},
+    body: JSON.stringify({ourTableName, inputs}),
+    method: 'POST'
+  })
+  .then(res => {
+    setInputs([copyOfInitValues])
+    setTableName('')
+  })
+console.log(JSON.stringify({ourTableName, inputs}))
+console.log('saved!')
+onClose()
+}
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -97,7 +108,7 @@ const isTrueOrFalse = (bool) => {
   return (
     <>
     
-      <Button onClick={onOpen}>Add Table</Button>
+      <Button colorScheme="pink" onClick={onOpen}>Add Table</Button>
 
       <Modal isOpen={isOpen} size={"full"} onClose={onClose}>
         <ModalOverlay />
@@ -217,14 +228,15 @@ const isTrueOrFalse = (bool) => {
           </Flex>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button colorScheme="blue" mr={3} onClick={saveButtonClick}>
               Save
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <Schema {...inputs} tableName={ourTableName}/>
+      {/* <Schema {...inputs} tableName={ourTableName}/> */}
       {/* pass down state using NEW COMPONENT WITH CARDS */}
+      <SchemaCards />
     </>
   )
 };
