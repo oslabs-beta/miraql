@@ -1,6 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Tree from 'react-d3-tree';
 
+
+
+
+ // fetch request to get all the table names and field information for our tables
+  // useEffect(() => {
+  //   fetch('/schemas')
+  //   .then(res => {
+  //     setResponse(res)
+  //   }, [])
+  //   .then(res => console.log(res))
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  // })
+
+  
 // const myTreeData = [
 //   {
 //     name: "Queries",
