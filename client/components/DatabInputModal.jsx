@@ -108,7 +108,7 @@ onClose()
   return (
     <>
     
-      <Button onClick={onOpen}>Add Table</Button>
+      <Button colorScheme="pink" onClick={onOpen}>Add Table</Button>
 
       <Modal isOpen={isOpen} size={"full"} onClose={onClose}>
         <ModalOverlay />
