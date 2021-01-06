@@ -58,6 +58,14 @@ queryController.addManyFieldsRows = (req, res, next) => {
   const arr = req.body;
   // we will get an array of objects with multiple rows that will need to be added
   let addToSchema = '';
+  // `SELECT id FROM schema_list WHERE schema_name = ($1)demo-schema`
+  const getIdString = `SELECT id FROM schema_list WHERE schema_name = $1`;
+  // $1 is going to point to [req.body.tableName]
+  const getIdParam = [req.body.tableName];
+  // once we query this, save it to a variable, and pass that variable to our INSERT statement as the foreign key
+  const idNumber = db
+    .query(getIdString, getIdParam)
+    .then((data) => console.log('this is our data fom idNumber', data));
 
   for (let i = 0; i < arr.length; i++) {
     const userFieldName = arr[i].fieldName;
@@ -105,12 +113,14 @@ queryController.addManyFieldsRows = (req, res, next) => {
       `'${userFieldRelate}'` +
       ',' +
       `'${userTypeRelate}'` +
+      ',' +
+      `${idNumber}` +
       '),';
     // console.log('this is the concatenated string', concatStr);
     addToSchema = addToSchema + concatStr;
     // console.log('this is our addToSchema query after concat:', addToSchema);
   }
-  let oldDbQuery = `INSERT INTO fields (field_name, field_type, default_value, primary_key, unique_bool, required_bool, queryable, table_relationship, field_relationship, type_relationship) VALUES `;
+  let oldDbQuery = `INSERT INTO fields (field_name, field_type, default_value, primary_key, unique_bool, required_bool, queryable, table_relationship, field_relationship, type_relationship, schema_list_id) VALUES `;
 
   let newDB = oldDbQuery + addToSchema;
   // console.log(newDB, 'newDB');
