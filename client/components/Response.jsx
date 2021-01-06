@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import Errors from './Errors.jsx';
 
-function Response({ urlValue, query, fetchResponse }) {
+function Response({ urlValue, query, fetchResponse, errors }) {
   const cleanResponse = JSON.stringify(fetchResponse, null, 2);
 
   // let TabName = 'Response';
@@ -26,8 +26,6 @@ function Response({ urlValue, query, fetchResponse }) {
   return (
     <Tabs variant="enclosed" colorScheme="pink">
       <TabList>
-        {/* <Tab isselected="false">{TabName}</Tab> */}
-        {/* <Tab isselected="true">Errors</Tab> */}
         <Tab>Response</Tab>
         <Tab>Errors</Tab>
       </TabList>
@@ -47,7 +45,7 @@ function Response({ urlValue, query, fetchResponse }) {
           />
         </TabPanel>
         <TabPanel>
-          <Errors fetchResponse={fetchResponse} />
+          <Errors fetchResponse={cleanResponse} errors={errors} />
         </TabPanel>
       </TabPanels>
     </Tabs>

@@ -23,3 +23,33 @@ h2 {
 	font-weight: 700;
 	color: #d53f8c;
 }
+
+.updateDelete {
+	border: 2px solid #d53f8c;
+	border-radius: 15%;
+	float: right;
+	background-color: #d53f8c;
+	color: white;
+	margin: 10px;
+	padding: 5px;
+}
+
+
+table, th, td {
+ border: 1px solid black;
+ padding: 15px;
+ border-collapse: collapse;
+}
+
+.tableHeader {
+	padding: 15px;
+}
+
+th {
+	text-align: left;
+}
+
+table {
+	border-spacing: 5px;
+	background-color: white;
+}

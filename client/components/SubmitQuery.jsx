@@ -23,13 +23,19 @@ import 'codemirror/addon/edit/closebrackets';
 import '../styles/style.css';
 import DatabInputModal from './DatabInputModal.jsx';
 import Schema from './Schema.jsx';
-import Metrics from './Metrics.jsx'
+import Metrics from './Metrics.jsx';
 
 function SubmitQuery({ urlValue }) {
-  // react hooks to hold query in state
+  // hook to hold query in state
   let [query, setQuery] = useState('');
-  /// react hooks to hold fetch response in state
+  // hook to hold fetch response in state
   let [fetchResponse, setFetchResponse] = useState('');
+  // hook to hold responseTime in state
+  let [queryResponseTime, setQueryResponseTime] = useState([]);
+  // hook to hold query number in state
+  let [queryTitle, setQueryNumber] = useState([]);
+  // hook to catch errors in fetch request
+  let [errors, setErrors] = useState(false);
 
   // handle query text input change
   const handleQueryChange = (e) => {
@@ -37,9 +43,15 @@ function SubmitQuery({ urlValue }) {
     setQuery(inputValue);
   };
 
-  // function to query request and send response back
-  const getQueryResponse = () => {
-    // execute a fetch request
+  // function to handle submit button (query request and timer)
+  const handleSubmit = () => {
+    // start a timer
+    const startTime = Date.now();
+
+    // push query input into array in state to render on metrics graph
+    setQueryNumber((queryTitle) => [...queryTitle, 'Query']);
+
+    // execute a fetch request to get query response and stop time
     fetch(`${urlValue}`, {
       method: 'POST',
       headers: {
@@ -48,8 +60,14 @@ function SubmitQuery({ urlValue }) {
       body: JSON.stringify({ query: query }),
     })
       .then((res) => res.json())
-      // .then((res) => JSON.stringify(res))
-      .then((res) => setFetchResponse(res))
+      .then((res) => {
+        const responseTime = (Date.now() - startTime) / 1000;
+        setQueryResponseTime((queryResponseTime) => [
+          ...queryResponseTime,
+          responseTime,
+        ]);
+        setFetchResponse(res);
+      })
       .catch((error) => console.log(error));
   };
 
@@ -80,7 +98,7 @@ function SubmitQuery({ urlValue }) {
               <Button
                 colorScheme="pink"
                 size="sm"
-                onClick={getQueryResponse}
+                onClick={handleSubmit}
                 id="submitbutton"
               >
                 Submit
@@ -94,27 +112,34 @@ function SubmitQuery({ urlValue }) {
           urlValue={urlValue}
           query={query}
           fetchResponse={fetchResponse}
+          errors={errors}
         />
       </GridItem>
       <GridItem bg="#F7FAFC" colStart={6} colEnd={11}>
         <Tabs variant="enclosed" colorScheme="pink">
-        <TabList>
-          <Tab>Add Tables</Tab>
-          <Tab>Schema</Tab>
-          <Tab>Metrics</Tab>
-        </TabList>
-        <TabPanels>
-        <TabPanel>
-          <DatabInputModal />
-          {/* new tables card component? */}
-        </TabPanel>
-        <TabPanel>
-          <Schema />
-        </TabPanel>
-        <TabPanel>
-          <Metrics query={query} urlValue={urlValue} fetchResponse={fetchResponse}/>
-        </TabPanel>
-        </TabPanels>
+          <TabList>
+            <Tab>Add Tables</Tab>
+            <Tab>Schema</Tab>
+            <Tab>Metrics</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <DatabInputModal />
+              {/* new tables card component? */}
+            </TabPanel>
+            <TabPanel>
+              <Schema />
+            </TabPanel>
+            <TabPanel>
+              <Metrics
+                query={query}
+                urlValue={urlValue}
+                fetchResponse={fetchResponse}
+                queryResponseTime={queryResponseTime}
+                queryTitle={queryTitle}
+              />
+            </TabPanel>
+          </TabPanels>
         </Tabs>
       </GridItem>
     </Grid>
