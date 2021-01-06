@@ -97,7 +97,7 @@ const saveButtonClick = () => {
     setInputs([copyOfInitValues])
     setTableName('')
   })
-console.log(JSON.stringify({ourTableName, inputs}))
+console.log({ourTableName, inputs})
 console.log('saved!')
 onClose()
 }
