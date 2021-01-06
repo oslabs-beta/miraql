@@ -9,7 +9,7 @@ import {
   TableCaption,
 } from "@chakra-ui/react";
 
-const SchemaCards = () => {
+const SchemaCards = (boolSwap) => {
   const [schemaResponse, setResponse] = useState([]);
   const [fieldResponse, setFields] = useState([]);
 
@@ -23,7 +23,7 @@ const SchemaCards = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [boolSwap]);
 
   // console.log("this is the schemaResponse", schemaResponse);
 
@@ -36,9 +36,7 @@ const SchemaCards = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
-  // console.log("this is the field response", fieldResponse);
+  }, [boolSwap]);
 
   return (
     <>

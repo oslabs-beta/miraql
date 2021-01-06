@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Grid,
   GridItem,
@@ -12,24 +12,24 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-} from '@chakra-ui/react';
-import Response from './Response.jsx';
-import { Controlled as CodeMirror } from 'react-codemirror2';
-import '../../node_modules/codemirror/lib/codemirror.css';
-import '../../node_modules/codemirror/theme/neo.css';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/addon/edit/closebrackets';
+} from "@chakra-ui/react";
+import Response from "./Response.jsx";
+import { Controlled as CodeMirror } from "react-codemirror2";
+import "../../node_modules/codemirror/lib/codemirror.css";
+import "../../node_modules/codemirror/theme/neo.css";
+import "codemirror/mode/javascript/javascript";
+import "codemirror/addon/edit/closebrackets";
 
-import '../styles/style.css';
-import DatabInputModal from './DatabInputModal.jsx';
-import Schema from './Schema.jsx';
-import Metrics from './Metrics.jsx';
+import "../styles/style.css";
+import DatabInputModal from "./DatabInputModal.jsx";
+import Schema from "./Schema.jsx";
+import Metrics from "./Metrics.jsx";
 
 function SubmitQuery({ urlValue }) {
   // hook to hold query in state
-  let [query, setQuery] = useState('');
+  let [query, setQuery] = useState("");
   // hook to hold fetch response in state
-  let [fetchResponse, setFetchResponse] = useState('');
+  let [fetchResponse, setFetchResponse] = useState("");
   // hook to hold responseTime in state
   let [queryResponseTime, setQueryResponseTime] = useState([]);
   // hook to hold query number in state
@@ -49,13 +49,13 @@ function SubmitQuery({ urlValue }) {
     const startTime = Date.now();
 
     // push query input into array in state to render on metrics graph
-    setQueryNumber((queryTitle) => [...queryTitle, 'Query']);
+    setQueryNumber((queryTitle) => [...queryTitle, "Query"]);
 
     // execute a fetch request to get query response and stop time
     fetch(`${urlValue}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-type': 'application/json',
+        "Content-type": "application/json",
       },
       body: JSON.stringify({ query: query }),
     })
@@ -85,8 +85,8 @@ function SubmitQuery({ urlValue }) {
                 options={{
                   autoCloseBrackets: true,
                   tabSize: 2,
-                  mode: 'javascript',
-                  theme: 'neo',
+                  mode: "javascript",
+                  theme: "neo",
                   lineNumbers: true,
                   lineWrapping: true,
                 }}
