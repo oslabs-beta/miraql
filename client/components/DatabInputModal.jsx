@@ -83,7 +83,7 @@ const handleAddClick = () => {
 // this is not currently being used or working
 const isTrueOrFalse = (bool) => {
   return !bool;
-}
+};
 
 // this function runs when the save button is clicked, it runs a post request to the database and then it empties out the modal and resets state
 const saveButtonClick = () => {
