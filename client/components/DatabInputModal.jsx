@@ -76,12 +76,7 @@ function DatabInputModal() {
     setInputs([...inputs, copyOfInitValues]);
   };
 
-  // toggle between true and false
-  // this is not currently being used or working
-  const isTrueOrFalse = (bool) => {
-    return !bool;
-  };
-
+  const stateBoolean = true;
   // this function runs when the save button is clicked, it runs a post request to the database and then it empties out the modal and resets state
   const saveButtonClick = () => {
     fetch("/schema", {
@@ -94,7 +89,12 @@ function DatabInputModal() {
     });
     console.log({ ourTableName, inputs });
     console.log("saved!");
+    changeBoolFunc(stateBoolean);
     onClose();
+  };
+
+  const changeBoolFunc = (bool) => {
+    return !bool;
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -328,7 +328,7 @@ function DatabInputModal() {
       </Modal>
       {/* <Schema {...inputs} tableName={ourTableName}/> */}
       {/* pass down state using NEW COMPONENT WITH CARDS */}
-      <SchemaCards />
+      <SchemaCards boolSwap={stateBoolean} />
     </>
   );
 }
