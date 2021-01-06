@@ -2,8 +2,10 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 const Metrics = ({ fetchResponse, queryResponseTime, queryTitle }) => {
-  //   console.log(queryResponseTime);
-  //   console.log(queryTitle);
+  // calculate query response time average
+  const queryResponseAverage = (
+    queryResponseTime.reduce((a, b) => a + b, 0) / queryResponseTime.length
+  ).toFixed(2);
 
   // store all chart data in state and add in passed down data as labels and data
   const state = {
@@ -23,14 +25,13 @@ const Metrics = ({ fetchResponse, queryResponseTime, queryTitle }) => {
 
   return (
     <div>
-      <p>Metrics bitches</p>
       <Line
         data={state}
         options={{
           title: {
             display: true,
-            text: 'Average Query Response Time',
-            fontSize: 20,
+            text: `Average Query Response Time: ${queryResponseAverage} seconds`,
+            fontSize: 14,
           },
           legend: {
             display: true,
