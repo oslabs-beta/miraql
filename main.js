@@ -1,11 +1,10 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const log = require('electron-log');
-const request = require("request");
+const request = require('request');
 const contextMenu = require('electron-context-menu');
 const express = require('express'); //your express app
 // require('../client/components/App.jsx')
-
 
 contextMenu({
   prepend: (defaultActions, params, browserWindow) => [
@@ -52,18 +51,17 @@ contextMenu({
 
 // app.whenReady().then(createWindow);
 
-app.on('ready', function() {
+app.on('ready', function () {
   express();
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
     autoHideMenuBar: true,
     useContentSize: true,
-    resizable: false,
+    resizable: true,
   });
   mainWindow.loadURL('http://localhost:3000/');
   mainWindow.focus();
-
 });
 
 app.on('window-all-closed', () => {
