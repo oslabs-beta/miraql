@@ -8,18 +8,19 @@ const queryController = require("./controllers/queryController.js");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-if (process.env.NODE_ENV === "production") {
+// if (process.env.NODE_ENV === "production") {
   app.use("/build", express.static(path.join(__dirname, "../build")));
   // serve index.html on the route '/'
   app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../index.html"));
   });
-}
+// }
 
 // ROUTE HANDLERS FOR MIDDLEWARE CRUD FUNCTIONALITY:
 // GET request to /schema and /fields to get all db info
 app.get("/schema", queryController.getAllSchemaList);
 app.get("/field", queryController.getAllFields);
+app.get("/everything", queryController.getEverything)
 // Initial POST request to add a new row to our schema_list and add all the field rows to the fields table
 app.post(
   "/schema",

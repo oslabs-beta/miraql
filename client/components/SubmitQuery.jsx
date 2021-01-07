@@ -128,7 +128,7 @@ function SubmitQuery({ urlValue }) {
               {/* new tables card component? */}
             </TabPanel>
             <TabPanel>
-              <Schema />
+              <Schema query={query}/>
             </TabPanel>
             <TabPanel>
               <Metrics

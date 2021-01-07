@@ -70,62 +70,86 @@ import Tree from "react-d3-tree";
 //   },
 // ];
 
-const schemaTreeData = [
-  {
-    name: "Queries",
-  },
-];
 
-const svgSquare = {
-  shape: "rect",
-  shapeProps: {
-    width: 20,
-    height: 20,
-    x: -10,
-    y: -10,
-    fill: "pink",
-  },
-};
-
-function Schema(props) {
+function Schema(query) {
   // console.log(props)
-  const [schemaResponse, setResponse] = useState([]);
-  const [fieldResponse, setFields] = useState([]);
+  // const [schemaResponse, setResponse] = useState([]);
+  // const [fieldResponse, setFields] = useState([]);
   const [updateState, stateUpdates] = useState();
+  const [allData, setAllData] = useState([])
 
+  
   let stateBoolean = true;
-
+  
   function handleUpdate() {
     console.log('that update was handled')
     stateUpdates({})
   }
-
+  
   // fetch request to get all the table names and field information for our tables
-  useEffect(() => {
-    fetch("/schema")
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => setResponse(res))
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [updateState]);
-
-  // console.log("this is the schemaResponse", schemaResponse);
+  // const schemaTreeData = [];
 
   useEffect(() => {
-    fetch("/field")
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => setFields(res))
-      .catch((err) => {
-        console.log(err);
-      });
+    fetch("/everything")
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) =>{
+      setAllData(res)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }, [updateState]);
+  
+  console.log('this is ALLLLLLL DATA', allData)
 
-  // console.log("this is the field response", fieldResponse);
+  const cache = {};
+
+  for(let i = 0; i < allData.length; i++) {
+    console.log('what im pushing', allData[i]["field_name"])
+    if (!cache[allData[i]["schema_name"]]) {
+      cache[allData[i]["schema_name"]] = [allData[i]["field_name"]];
+      console.log('cache', cache);
+  }
+    else cache[allData[i]["schema_name"]].push(allData[i]["field_name"]);
+
+  }
+  
+
+  const schemaTreeData = [
+    {
+      name: "Queries",
+      children: [
+        {
+          name: 'book',
+          children: [
+            {
+              name: 'id'
+            },
+            {
+              name: 'name'
+            }
+          ]
+        },
+        {
+          name: 'author'
+        }
+      ]
+    },
+  ];
+  console.log('schematree', schemaTreeData)
+  
+  const svgSquare = {
+    shape: "rect",
+    shapeProps: {
+      width: 20,
+      height: 20,
+      x: -10,
+      y: -10,
+      fill: "pink",
+    },
+  };
 
   return (
     <>
