@@ -10,11 +10,26 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-const SchemaCards = () => {
+const SchemaCards = (boolSwap) => {
   const [updateState, stateUpdates] = useState();
   const [allData, setAllData] = useState([]);
 
+
+
   // Fetch join table from /everything and populate setAllData state
+  // useEffect(() => {
+  //   fetch("/everything")
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then((res) =>{
+  //     setAllData(res)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // }, [updateState]);
+
   useEffect(() => {
     fetch("/everything")
     .then((res) => {
@@ -26,7 +41,7 @@ const SchemaCards = () => {
     .catch((err) => {
       console.log(err);
     });
-  }, [updateState]);
+  }, [boolSwap]);
   
   // Parse through setAllData state and organize data into cache by table name, field name, and field type
   const cache = {};
