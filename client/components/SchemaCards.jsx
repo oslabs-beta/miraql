@@ -52,10 +52,10 @@ const SchemaCards = () => {
     // Push field names and field types into each row in table
     for (let i = 0; i < element[1].length; i = i + 2) {
       table.push(
-        <tr>
-          <td>{element[1][i]}</td>
-          <td>{element[1][i+1]}</td>
-        </tr>
+        <Tr>
+          <Td>{element[1][i]}</Td>
+          <Td>{element[1][i+1]}</Td>
+        </Tr>
         );
     };
 
@@ -64,22 +64,22 @@ const SchemaCards = () => {
       <>
       <br></br>
       <br></br>
-      <table>
-      <div>
-        <tr>
+      <Table>
           {/* {// grab table_name from response object} */}
-          <h2 className="tableHeader">{element[0]}</h2>
-        </tr>
-        <tr>
+        <TableCaption placement="top" className="tableHeader" color="d53f8c" fontSize="20px">
+          {element[0]}
+        </TableCaption>
+        <Tr>
           {/* {// grab field_name and field_type from response object} */}
-          <th className="table">Field Name</th>
-          <th className="table">Field Type</th>
-        </tr>
+          <Th className="table">Field Name</Th>
+          <Th className="table">Field Type</Th>
+        </Tr>
         {table}
-        <button className="updateDelete">Delete</button>
-        <button className="updateDelete">Update</button>
-      </div>
-      </table>
+
+      {/* </div> */}
+      </Table>
+      <button className="updateDelete">Delete</button>
+      <button className="updateDelete">Update</button>
       </>
     );
   });
@@ -87,7 +87,7 @@ const SchemaCards = () => {
   // Return out all the tables created.
   return (
     <>
-    <div>
+    <div id="tablearray">
       {tableArray}
     </div>
     </>
