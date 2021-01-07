@@ -38,12 +38,12 @@ Users can add in tables for a graphical representation of all the schema’s fi
 Go to the metrics tab to view data visualizations of query response speeds. Compare the speed of your most recent query to those of all previous query requests made with MiraQL in a line graph that updates every time you submit a query.
 
 ## Contact Us
-* [Website](#https://miraql.org)
-* [Github Link](#https://github.com/oslabs-beta/miraql)
+* [Website](https://miraql.org)
+* [Github Link](https://github.com/oslabs-beta/miraql)
 
 ## The Production Team
-* [Kristiina Eelnurme](#https://www.linkedin.com/in/kristiina-eelnurme/) - [@keelnu](#https://github.com/keelnu) 
-* [Sabrina Goldfarb](#https://www.linkedin.com/in/sabrinagoldfarb/) - [@sgoldfarb2](#https://github.com/sgoldfarb2)
+* [Kristiina Eelnurme](https://www.linkedin.com/in/kristiina-eelnurme/) - [@keelnu](https://github.com/keelnu) 
+* [Sabrina Goldfarb](https://www.linkedin.com/in/sabrinagoldfarb/) - [@sgoldfarb2](https://github.com/sgoldfarb2)
 * [Jane Kim](https://www.linkedin.com/in/janeminhyungkim/) - [@janemkim](https://github.com/miguelmanalo)
 * [Miguel Manalo](https://www.linkedin.com/in/mmanalo/) - [@miguelmanalo](https://github.com/miguelmanalo)
 * [Sanaya Mirpuri](https://www.linkedin.com/in/sanayamirpuri/) - [@sanayamirpuri](https://github.com/sanayamirpuri)
