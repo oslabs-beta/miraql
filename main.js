@@ -1,8 +1,11 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const log = require('electron-log');
+const request = require("request");
 const contextMenu = require('electron-context-menu');
-const express = require('./express'); //your express app
+const express = require('express'); //your express app
+// require('../client/components/App.jsx')
+
 
 contextMenu({
   prepend: (defaultActions, params, browserWindow) => [
@@ -26,28 +29,28 @@ contextMenu({
   ],
 });
 
-let mainWindow;
-(async () => {
-  await app.whenReady();
+// let mainWindow;
+// (async () => {
+//   await app.whenReady();
 
-  mainWindow = new BrowserWindow(webPreferences, {
-    spellcheck: true,
-  });
-})();
+//   mainWindow = new BrowserWindow(webPreferences, {
+//     spellcheck: true,
+//   });
+// })();
 
-function createWindow() {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
+// function createWindow() {
+//   const win = new BrowserWindow({
+//     width: 800,
+//     height: 600,
+//     webPreferences: {
+//       nodeIntegration: true,
+//     },
+//   });
 
-  win.loadFile('./index.html');
-}
+//   win.loadFile('./index.html');
+// }
 
-app.whenReady().then(createWindow);
+// app.whenReady().then(createWindow);
 
 app.on('ready', function() {
   express();
@@ -78,8 +81,4 @@ app.on('activate', () => {
 app.on(
   'window-all-closed',
   () => process.platform !== 'darwin' && app.quit() // "darwin" targets macOS only.
-<<<<<<< HEAD
 );
-=======
-);
->>>>>>> 643943bb09900c3e0213c0d34c5f420f6d09635c
