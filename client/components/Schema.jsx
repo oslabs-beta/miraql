@@ -102,15 +102,15 @@ function Schema(query) {
     });
   }, [updateState]);
   
-  console.log('this is ALLLLLLL DATA', allData)
+  // console.log('this is ALLLLLLL DATA', allData)
 
   const cache = {};
 
   for(let i = 0; i < allData.length; i++) {
-    console.log('what im pushing', allData[i]["field_name"])
+    // console.log('what im pushing', allData[i]["field_name"])
     if (!cache[allData[i]["schema_name"]]) {
       cache[allData[i]["schema_name"]] = [allData[i]["field_name"]];
-      console.log('cache', cache);
+      // console.log('cache', cache);
   }
     else cache[allData[i]["schema_name"]].push(allData[i]["field_name"]);
 
