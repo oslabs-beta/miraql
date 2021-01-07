@@ -1,10 +1,10 @@
-import { tree } from "d3";
-import React, { useContext, useEffect, useState } from "react";
-import { Tree, treeUtil } from "react-d3-tree";
+import { tree } from 'd3';
+import React, { useContext, useEffect, useState } from 'react';
+import { Tree, treeUtil } from 'react-d3-tree';
 
 // const myTreeData = [
 //   {
-//     name: "Queries",
+//     name: 'Queries',
 //     // attributes: {
 //     //   keyA: "val A",
 //     //   keyB: "val B",
@@ -18,11 +18,11 @@ import { Tree, treeUtil } from "react-d3-tree";
 //         x: -10,
 //         y: -10,
 //         fill: 'yellow',
-//       }
+//       },
 //     },
 //     children: [
 //       {
-//         name: "Author",
+//         name: 'Author',
 //         nodeSvgShape: {
 //           shape: 'rect',
 //           shapeProps: {
@@ -31,7 +31,7 @@ import { Tree, treeUtil } from "react-d3-tree";
 //             x: -10,
 //             y: -10,
 //             fill: 'yellow',
-//           }
+//           },
 //         },
 //         //   styles: {
 //         //     links:{
@@ -42,28 +42,28 @@ import { Tree, treeUtil } from "react-d3-tree";
 
 //         children: [
 //           {
-//             name: "authorid",
+//             name: 'authorid',
 //           },
 //           {
-//             name: "age",
+//             name: 'age',
 //           },
 //           {
-//             name: "name",
+//             name: 'name',
 //           },
 //         ],
 //       },
 
 //       {
-//         name: "Book",
+//         name: 'Book',
 //         children: [
 //           {
-//             name: "bookid",
+//             name: 'bookid',
 //           },
 //           {
-//             name: "genre",
+//             name: 'genre',
 //           },
 //           {
-//             name: "name",
+//             name: 'name',
 //           },
 //         ],
 //       },
@@ -71,151 +71,100 @@ import { Tree, treeUtil } from "react-d3-tree";
 //   },
 // ];
 
-
 function Schema(query) {
   // console.log(props)
   // const [schemaResponse, setResponse] = useState([]);
   // const [fieldResponse, setFields] = useState([]);
   const [updateState, stateUpdates] = useState();
-  const [allData, setAllData] = useState()
+  const [allData, setAllData] = useState();
   const [treeData, setTreeData] = useState();
 
-  
   let stateBoolean = true;
-  
+
   function handleUpdate() {
     // console.log('that update was handled')
-    stateUpdates({})
+    stateUpdates({});
   }
-  
+
   // fetch request to get all the table names and field information for our tables
   // const schemaTreeData = [];
 
   useEffect(() => {
-    fetch("/everything")
-    .then((res) => {
-      return res.json();
-    })
-    .then((res) =>{
-      setAllData(res)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    fetch('/everything')
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setAllData(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [updateState]);
 
- useEffect(() => {
-   treeUtil.parseJSON('/everything')
-   .then((data) => setTreeData(data))
- }, [])
+  useEffect(() => {
+    treeUtil.parseJSON('/everything').then((data) => setTreeData(data));
+  }, []);
 
-//  const fillTreeData = () => {
-//     treeUtil.parseJSON('/everything')
-//    .then((data) => setTreeData(data))
-//  }
-  
+  const fillTreeData = () => {
+    treeUtil.parseJSON('/everything').then((data) => setTreeData(data));
+  };
+
   // console.log('this is ALLLLLLL DATA', allData)
 
   const cache = {};
   // testArray is created to start our tree and be the root node
-  const testArray = [{name: 'Queries', children: []}];
-  // console.log('this is test array', testArray[0]["children"])
+  const testArray = [{ name: 'Queries', children: [] }];
+  console.log('this is test array', testArray);
 
   // this creates our entire cache
-if(allData) {
-  for(let i = 0; i < allData.length; i++) {
-    // console.log('what im pushing', allData[i]["field_name"])
-    if (!cache[allData[i]["schema_name"]]) {
-      cache[allData[i]["schema_name"]] = [allData[i]["field_name"]];
-      // console.log('cache', cache);
-  }
-    else cache[allData[i]["schema_name"]].push(allData[i]["field_name"]);
-
-  }
-  // console.log(cache)
-
-
-  // this section is to create our child nodes
-  const innerArray = [];
-  // iterate over our cache
-  for (const key in cache) {
-
-    // console.log(cache[key])
-    // here we are pushing our top layer of our tree
-    testArray[0]["children"].push({name: key,
-      children: [cache[key]]})
-      
-      let cacheKeyArr = cache[key]
-    for(let i = 0; i < cacheKeyArr.length; i++) {
-      console.log('cacheKeyArr[i]', cacheKeyArr[i])
-      innerArray.push({name: cacheKeyArr[i]})
-      // {name: cacheKeyArr[i]}
+  if (allData) {
+    for (let i = 0; i < allData.length; i++) {
+      // console.log('what im pushing', allData[i]["field_name"])
+      if (!cache[allData[i]['schema_name']]) {
+        cache[allData[i]['schema_name']] = [allData[i]['field_name']];
+        // console.log('cache', cache);
+      } else cache[allData[i]['schema_name']].push(allData[i]['field_name']);
     }
+    console.log('this is the cache', cache);
+
+    const conversion = (cache) => {
+      const output = [];
+
+      for (const key in cache) {
+        const newObj = {};
+        const fields = cache[key];
+        newObj.name = key;
+        newObj.children = fields.map((el) => {
+          return { name: el };
+        });
+        testArray[0]['children'].push(newObj);
+      }
+      console.log(
+        'this is the test array after we push in our tree',
+        testArray
+      );
+    };
+
+    conversion(cache);
   }
-  // console.log('this is the test array', testArray)
-  console.log('this is the innerArray', innerArray)
-}
 
-// this section is to create granchild nodes but is not currently functional
-let innertestArray = testArray[0]["children"]
-console.log('this is testArray index 0 at children', innertestArray)
-
-for(let k = 0; k < innertestArray.length; k++) {
-  console.log('innertestarrayk', innertestArray[k]["children"])
-  let superInside = innertestArray[k]["children"][0]
-  let innerObj = {}
-  let innerArr = []
-  for(let l=0; l < superInside.length; l++) {
-    innerObj['name'] = superInside[l]
-    innerArr.push(innerObj)
-  }
-console.log(innerObj)
-console.log(innerArr)
-
-superInside.push(innerArr)
-console.log('this is VERY INSIDE', superInside)
-}
-
-
-  // const schemaTreeData = [
-  //   {
-  //     name: "Queries",
-  //     children: [
-  //       {
-  //         name: 'book',
-  //         children: [
-  //           {
-  //             name: 'id'
-  //           },
-  //           {
-  //             name: 'name'
-  //           }
-  //         ]
-  //       },
-  //       {
-  //         name: 'author'
-  //       }
-  //     ]
-  //   },
-  // ];
-  // console.log('schematree', schemaTreeData)
-  
   const svgSquare = {
-    shape: "rect",
+    shape: 'rect',
     shapeProps: {
       width: 20,
       height: 20,
       x: -10,
       y: -10,
-      fill: "pink",
+      fill: 'pink',
     },
   };
-  if(allData === undefined) {
-    return <>Still loading...</>
+  if (allData === undefined) {
+    return <>Still loading...</>;
   }
   return (
     <>
-        <button onClick={handleUpdate}>Render Schema</button>
+      <button onClick={handleUpdate}>Render Schema</button>
       <Tree
         data={testArray}
         nodeSvgShape={svgSquare}
@@ -223,8 +172,8 @@ console.log('this is VERY INSIDE', superInside)
         textLayout={{ x: -20, y: -20 }}
         styles={{
           links: {
-            stroke: "pink",
-            strokeWidth: "5px",
+            stroke: 'pink',
+            strokeWidth: '5px',
           },
         }}
       />
