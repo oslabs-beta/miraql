@@ -20,9 +20,11 @@ Read about our project on [Medium](https://medium.com/@jane.minhyung.kim/introdu
 - [License](#license)
 
 ## Download Instructions
-1. Simply click to download: Mac, Windows, Linux
-2. Extract the file
-3. Double click to run application
+1. Simply click to download: [Mac](https://res.cloudinary.com/dbo7cxsfs/raw/upload/v1610053369/MiraQL/MiraQL_Beta.dmg), Windows, Linux
+2. Extract the file from the dmg and double click to open.
+3. You may need to go in to Security & Privacy settings to allow MiraQL to be opened.
+
+_Please note: our app is currently unsupported by Big Sur._
 
 ## Getting Started
 **Feature 1: GraphQL Playground**
