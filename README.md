@@ -8,6 +8,8 @@ MiraQL is an Electron based desktop app designed to assist programmers by render
 
 MiraQL is currently in beta. Please feel free to post any issues to our GitHub. We welcome any and all feedback!
 
+Read about our project on Medium!
+
 ## Table of Contents 
 
 ### Download Instructions
