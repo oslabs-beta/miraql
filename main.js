@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const log = require('electron-log');
 const contextMenu = require('electron-context-menu');
+const express = require('./express'); //your express app
 
 contextMenu({
 	prepend: (defaultActions, params, browserWindow) => [
@@ -27,7 +28,7 @@ let mainWindow;
 
 	mainWindow = new BrowserWindow(
 		webPreferences, {
-			spellcheck: true
+      spellcheck: true,
     }
 	);
 })();
@@ -46,6 +47,20 @@ function createWindow() {
 
 app.whenReady().then(createWindow);
 
+app.on('ready', function() {
+  express();
+  mainWindow = new BrowserWindow({
+    width: 1280,
+    height: 720,
+    autoHideMenuBar: true,
+    useContentSize: true,
+    resizable: false,
+  });
+  mainWindow.loadURL('http://localhost:3000/');
+  mainWindow.focus();
+
+});
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -62,4 +77,3 @@ app.on(
   'window-all-closed',
   () => process.platform !== 'darwin' && app.quit() // "darwin" targets macOS only.
 );
-
