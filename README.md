@@ -8,7 +8,7 @@ MiraQL is an Electron based desktop app designed to assist programmers by render
 
 MiraQL is currently in beta. Please feel free to post any issues to our GitHub. We welcome any and all feedback!
 
-Read about our project on Medium!
+Read about our project on [Medium](https://medium.com/@jane.minhyung.kim/introducing-miraql-the-next-generation-graphql-gui-cd03adb80ed2)!
 
 ## Table of Contents 
 
@@ -28,14 +28,22 @@ Read about our project on Medium!
 **Feature 1: GraphQL Playground**
 Once your app opens, users can submit API endpoints in the form of URLs and test their queries and responses. Write and submit queries in the input field to receive responses or errors, and view them in the response and errors tabs.
 
+![GraphQL Playground](https://res.cloudinary.com/dbo7cxsfs/image/upload/v1610028283/MiraQL/Feature%201%20-%20GraphQL%20Playground.gif)
+
 **Feature 2: Easy Error Visualization**
 If your response returns any errors, head to the errors tab to view them in an intuitive manner. View the status, status code, error type, and error message in an easy to read table.
+
+![Error Visualization](https://res.cloudinary.com/dbo7cxsfs/image/upload/v1610027901/MiraQL/Feature%202%20-%20Error%20Visualization.gif)
 
 **Feature 3: Schema Visualization**
 Users can add in tables for a graphical representation of all the schema’s fields and relationships that they can then refer to while writing or editing queries.
 
+![Schema Visualization](https://res.cloudinary.com/dbo7cxsfs/image/upload/v1610027538/MiraQL/Feature%203%20-%20Schema%20Visualization.gif)
+
 **Feature 4: Response Metrics Analysis**
 Go to the metrics tab to view data visualizations of query response speeds. Compare the speed of your most recent query to those of all previous query requests made with MiraQL in a line graph that updates every time you submit a query.
+
+![Response Metrics Analysis](https://res.cloudinary.com/dbo7cxsfs/image/upload/v1610027281/MiraQL/Feature%204%20-%20Dynamic%20Query%20Response.gif)
 
 ## Contact Us
 * [Website](https://miraql.org)
