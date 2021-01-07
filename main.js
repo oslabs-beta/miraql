@@ -5,32 +5,34 @@ const contextMenu = require('electron-context-menu');
 const express = require('./express'); //your express app
 
 contextMenu({
-	prepend: (defaultActions, params, browserWindow) => [
-		{
-			label: 'Rainbow',
-			// Only show it when right-clicking images
-			visible: params.mediaType === 'image'
-		},
-		{
-			label: 'Search Google for “{selection}”',
-			// Only show it when right-clicking text
-			visible: params.selectionText.trim().length > 0,
-			click: () => {
-				shell.openExternal(`https://google.com/search?q=${encodeURIComponent(params.selectionText)}`);
-			}
-		}
-	]
+  prepend: (defaultActions, params, browserWindow) => [
+    {
+      label: 'Rainbow',
+      // Only show it when right-clicking images
+      visible: params.mediaType === 'image',
+    },
+    {
+      label: 'Search Google for “{selection}”',
+      // Only show it when right-clicking text
+      visible: params.selectionText.trim().length > 0,
+      click: () => {
+        shell.openExternal(
+          `https://google.com/search?q=${encodeURIComponent(
+            params.selectionText
+          )}`
+        );
+      },
+    },
+  ],
 });
 
 let mainWindow;
 (async () => {
-	await app.whenReady();
+  await app.whenReady();
 
-	mainWindow = new BrowserWindow(
-		webPreferences, {
-      spellcheck: true,
-    }
-	);
+  mainWindow = new BrowserWindow(webPreferences, {
+    spellcheck: true,
+  });
 })();
 
 function createWindow() {
@@ -39,7 +41,7 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-    }
+    },
   });
 
   win.loadFile('./index.html');
@@ -76,4 +78,8 @@ app.on('activate', () => {
 app.on(
   'window-all-closed',
   () => process.platform !== 'darwin' && app.quit() // "darwin" targets macOS only.
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> 643943bb09900c3e0213c0d34c5f420f6d09635c
