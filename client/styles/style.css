@@ -54,3 +54,14 @@ table {
   border-spacing: 5px;
   background-color: white;
 }
+
+
+.renderSchemaBtn {
+  border: 2px solid #d53f8c;
+  border-radius: 15%;
+  background-color: #d53f8c;
+  color: white;
+  margin: 10px;
+  padding: 5px;
+  font-style: bold;
+}
