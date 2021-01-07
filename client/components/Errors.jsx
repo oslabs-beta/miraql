@@ -7,32 +7,26 @@ import {
   Th,
   Td,
   TableCaption,
+  Text,
 } from '@chakra-ui/react';
 
 const Errors = ({ fetchResponse, errors }) => {
-  let [successfulQuery, setSuccessfulQuery] = useState('');
-  let [errorType, setErrorType] = useState('');
-  let [errorMessage, setErrorMessage] = useState('');
-  let [errorLine, setErrorLine] = useState('');
+  // setting variables
+  let status = '';
+  let statusCode = '';
+  let errorType = '';
+  let errorMessage = '';
 
-  // const newResponse = JSON.parse(fetchResponse);
-
-  // const setAllState = () => {
-  //   if (newResponse['errors']) {
-  //     setSuccessfulQuery('Unsuccessful');
-  //     setErrorType('Client');
-  //     setErrorMessage(newResponse['errors']['message']);
-  //     setErrorLine(newResponse['errors']['line']);
-  //   } else {
-  //     setSuccessfulQuery('Successful');
-  //     setErrorType('No errors');
-  //     setErrorMessage('No errors');
-  //     setErrorLine('No errors');
-  //   }
-  // };
+  // if there are errors show these errors
+  if (errors === true) {
+    status = 'Unsuccessful Query';
+    errorType = 'Client Error';
+    statusCode = '400';
+    errorMessage = 'Incorrect syntax or connection URL';
+  }
 
   return (
-    <Table size="md" variant="striped" colorScheme="pink">
+    <Table size="md" variant="simple">
       <Thead>
         <Tr>
           <Th>Query Information</Th>
@@ -41,20 +35,28 @@ const Errors = ({ fetchResponse, errors }) => {
       </Thead>
       <Tbody>
         <Tr>
-          <Td>Successful Query</Td>
-          <Td>{successfulQuery}</Td>
+          <Td>Status</Td>
+          <Td>
+            <Text>{status}</Text>
+          </Td>
+        </Tr>
+        <Tr>
+          <Td>Status Code</Td>
+          <Td>
+            <Text>{statusCode}</Text>
+          </Td>
         </Tr>
         <Tr>
           <Td>Error Type</Td>
-          <Td>{errorType}</Td>
+          <Td>
+            <Text>{errorType}</Text>
+          </Td>
         </Tr>
         <Tr>
           <Td>Message</Td>
-          <Td>{errorMessage}</Td>
-        </Tr>
-        <Tr>
-          <Td>Line</Td>
-          <Td>{errorLine}</Td>
+          <Td>
+            <Text>{errorMessage}</Text>
+          </Td>
         </Tr>
       </Tbody>
     </Table>

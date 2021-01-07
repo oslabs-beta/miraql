@@ -16,12 +16,8 @@ import {
 import Errors from './Errors.jsx';
 
 function Response({ urlValue, query, fetchResponse, errors }) {
+  // clean response to show in code mirror
   const cleanResponse = JSON.stringify(fetchResponse, null, 2);
-
-  // let TabName = 'Response';
-  // console.log('response', fetchResponse);
-  // // If there is an 'errors' object in the response, switch tabname to Errors
-  // if (fetchResponse['errors']) TabName = 'Errors';
 
   return (
     <Tabs variant="enclosed" colorScheme="pink">
@@ -45,7 +41,7 @@ function Response({ urlValue, query, fetchResponse, errors }) {
           />
         </TabPanel>
         <TabPanel>
-          <Errors fetchResponse={cleanResponse} errors={errors} />
+          <Errors fetchResponse={fetchResponse} errors={errors} />
         </TabPanel>
       </TabPanels>
     </Tabs>
@@ -53,52 +49,3 @@ function Response({ urlValue, query, fetchResponse, errors }) {
 }
 
 export default Response;
-
-// let jsonStr =
-//   '{"data":{"post":{"id":"1","title":"sunt aut facere repellat provident occaecati excepturi optio reprehenderit","body":"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}}}';
-
-// let newstr = fetchResponse;
-// console.log('this is jsonStr', jsonStr);
-// console.log('this is fetch response', fetchResponse);
-
-// Codemirror
-
-// import React, { useState } from 'react';
-// import CodeMirror from 'codemirror';
-// import 'codemirror/addon/hint/show-hint';
-// import 'codemirror/addon/lint/lint';
-// import 'codemirror-graphql/hint';
-// import 'codemirror-graphql/lint';
-// import 'codemirror-graphql/mode';
-
-// function Response({ urlValue, query, fetchResponse }) {
-//   // let [value, setValue] = useState('');
-
-//   // const handleChange = (e) => {
-//   //   let inputValue = e.target.value;
-//   //   setValue(inputValue);
-//   // };
-//   // let jsonParsed = JSON.parse(fetchResponse);
-
-//   const myTextArea = 'hello';
-
-//   CodeMirror.fromTextArea(fetchResponse, {
-//     mode: 'graphql',
-//     lint: {
-//       schema: myGraphQLSchema,
-//     },
-//     hintOptions: {
-//       schema: myGraphQLSchema,
-//     },
-//   });
-
-//   return (
-//     <div>
-//       <p>Response bitch</p>
-//       <p>{fetchResponse}</p>
-//       {/* <CodeMirror /> */}
-//     </div>
-//   );
-// }
-
-// export default Response;
