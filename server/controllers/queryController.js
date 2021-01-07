@@ -35,6 +35,15 @@ queryController.getAllFields = (req, res, next) => {
     });
 };
 
+
+queryController.getEverything = (req, res, next) => {
+  const queryStr = 'SELECT schema_name, field_name, field_type FROM schema_list RIGHT JOIN fields ON schema_list.id=fields.schema_list_id'
+
+  db.query(queryStr)
+  .then((data) => {
+    res.json(data.rows)
+  })
+}
 // POST request: creates a new row in the schema_list table
 // req.body would send the 'schema_name'
 queryController.addRowSchemaList = (req, res, next) => {

@@ -13,6 +13,7 @@ const config = {
     proxy: {
       "/schema": "http://localhost:3000",
       "/field": "http://localhost:3000",
+      "/everything": "http://localhost:3000"
     },
     publicPath: "/build/",
   },
