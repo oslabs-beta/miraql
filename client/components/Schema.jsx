@@ -1,7 +1,8 @@
 import { tree } from 'd3';
 import React, { useContext, useEffect, useState } from 'react';
 import { Tree, treeUtil } from 'react-d3-tree';
-
+import { Button } from "@chakra-ui/react";
+ 
 // const myTreeData = [
 //   {
 //     name: 'Queries',
@@ -164,12 +165,15 @@ function Schema(query) {
   }
   return (
     <>
-      <button onClick={handleUpdate}>Render Schema</button>
+    <Button colorScheme="pink" onClick={handleUpdate}>Render Schema</Button>
+      {/* <button className="renderSchemaBtn" onClick={handleUpdate}>Render Schema</button> */}
       <Tree
         data={testArray}
         nodeSvgShape={svgSquare}
         translate={{ x: 50, y: 250 }}
         textLayout={{ x: -20, y: -20 }}
+        zoom={.3}
+        nodeSize={{x:200, y:50}}
         styles={{
           links: {
             stroke: 'pink',
