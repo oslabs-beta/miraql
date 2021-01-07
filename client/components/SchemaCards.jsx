@@ -7,6 +7,7 @@ import {
   Th,
   Td,
   TableCaption,
+  Box,
 } from "@chakra-ui/react";
 
 const SchemaCards = () => {
@@ -87,9 +88,9 @@ const SchemaCards = () => {
   // Return out all the tables created.
   return (
     <>
-    <div id="tablearray">
+    <Box overflowY="scroll" maxHeight="70vh">
       {tableArray}
-    </div>
+    </Box>
     </>
   );
 };

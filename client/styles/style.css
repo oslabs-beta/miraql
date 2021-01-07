@@ -54,7 +54,3 @@ table {
   border-spacing: 5px;
   background-color: white;
 }
-
-#tablearray{
-  overflow-y: scroll
-}
