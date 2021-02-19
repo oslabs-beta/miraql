@@ -15,7 +15,7 @@ function Container() {
               mt="5px"
               boxSize="25px"
               objectFit="cover"
-              src="https://res.cloudinary.com/dbo7cxsfs/image/upload/v1607984039/MiraQL_cjttvv.png"
+              src="https://user-images.githubusercontent.com/47689732/108518052-2537b200-7296-11eb-80a8-5f8ddeb7c86a.png"
               alt="MiraQL"
             />
             <Heading fontSize="3xl" id="miraql-logo">MiraQL</Heading>
