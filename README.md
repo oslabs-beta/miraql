@@ -10,9 +10,10 @@ MiraQL is currently in beta. Please feel free to post any issues to our GitHub. 
 
 Read about our project on [Medium](https://medium.com/@jane.minhyung.kim/introducing-miraql-the-next-generation-graphql-gui-cd03adb80ed2)!
 
-## Table of Contents 
+## Table of Contents
 
 ### Download Instructions
+
 - [Getting Started](#download-instructions)
 - [Usage](#getting-started)
 - [Contact Us](#contact-us)
@@ -20,6 +21,7 @@ Read about our project on [Medium](https://medium.com/@jane.minhyung.kim/introdu
 - [License](#license)
 
 ## Download Instructions
+
 1. Simply click to download: [Mac](https://drive.google.com/file/d/1lHg_gUCfCbpjMr11J5snq23-wAogvkWz/view?usp=sharing), Windows, Linux
 2. Extract the file from the dmg and double click to open.
 3. You may need to go in to Security & Privacy settings to allow MiraQL to be opened.
@@ -27,6 +29,7 @@ Read about our project on [Medium](https://medium.com/@jane.minhyung.kim/introdu
 _Please note: our app is currently unsupported by Big Sur._
 
 ## Getting Started
+
 **Feature 1: GraphQL Playground**
 Once your app opens, users can submit API endpoints in the form of URLs and test their queries and responses. Write and submit queries in the input field to receive responses or errors, and view them in the response and errors tabs.
 
@@ -48,15 +51,18 @@ Go to the metrics tab to view data visualizations of query response speeds. Comp
 ![Response Metrics Analysis](https://res.cloudinary.com/dbo7cxsfs/image/upload/v1610027281/MiraQL/Feature%204%20-%20Dynamic%20Query%20Response.gif)
 
 ## Contact Us
-* [Website](https://miraql.org)
-* [Github Link](https://github.com/oslabs-beta/miraql)
+
+- [Website](https://miraql.org)
+- [Github Link](https://github.com/oslabs-beta/miraql)
 
 ## The Production Team
-* [Kristiina Eelnurme](https://www.linkedin.com/in/kristiina-eelnurme/) - [@keelnu](https://github.com/keelnu) 
-* [Sabrina Goldfarb](https://www.linkedin.com/in/sabrinagoldfarb/) - [@sgoldfarb2](https://github.com/sgoldfarb2)
-* [Jane Kim](https://www.linkedin.com/in/janeminhyungkim/) - [@janemkim](https://github.com/miguelmanalo)
-* [Miguel Manalo](https://www.linkedin.com/in/mmanalo/) - [@miguelmanalo](https://github.com/miguelmanalo)
-* [Sanaya Mirpuri](https://www.linkedin.com/in/sanayamirpuri/) - [@sanayamirpuri](https://github.com/sanayamirpuri)
+
+- [Kristiina Eelnurme](https://www.linkedin.com/in/kristiina-eelnurme/) - [@keelnu](https://github.com/keelnu)
+- [Sabrina Goldfarb](https://www.linkedin.com/in/sabrinagoldfarb/) - [@sgoldfarb2](https://github.com/sgoldfarb2)
+- [Jane Kim](https://www.linkedin.com/in/janeminhyungkim/) - [@janemkim](https://github.com/miguelmanalo)
+- [Miguel Manalo](https://www.linkedin.com/in/mmanalo/) - [@miguelmanalo](https://github.com/miguelmanalo)
+- [Sanaya Mirpuri](https://www.linkedin.com/in/sanayamirpuri/) - [@sanayamirpuri](https://github.com/sanayamirpuri)
 
 ## License
+
 This project is licensed under the [MIT License](https://opensource.org/licenses/mit-license.php).

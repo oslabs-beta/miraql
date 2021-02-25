@@ -62,6 +62,7 @@
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
     "d3": "^6.3.1",
+    "electron-packager": "^15.2.0",
     "express": "^4.12.3",
     "framer-motion": "^2.9.5",
     "graphql": "^15.4.0",
