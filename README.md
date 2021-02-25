@@ -20,7 +20,7 @@ Read about our project on [Medium](https://medium.com/@jane.minhyung.kim/introdu
 - [License](#license)
 
 ## Download Instructions
-1. Simply click to download: [Mac](https://www.dropbox.com/s/hofkrmcn5juocka/MiraQL-Mac-Beta.dmg?dl=0), Windows, Linux
+1. Simply click to download: [Mac](https://drive.google.com/file/d/1lHg_gUCfCbpjMr11J5snq23-wAogvkWz/view?usp=sharing), Windows, Linux
 2. Extract the file from the dmg and double click to open.
 3. You may need to go in to Security & Privacy settings to allow MiraQL to be opened.
 
