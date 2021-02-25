@@ -28,14 +28,14 @@ const express = require('express'); //your express app
 //   ],
 // });
 
-// let mainWindow;
-// (async () => {
-//   await app.whenReady();
+let mainWindow;
+(async () => {
+  await app.whenReady();
 
-//   mainWindow = new BrowserWindow(webPreferences, {
-//     spellcheck: true,
-//   });
-// })();
+  mainWindow = new BrowserWindow(webPreferences, {
+    spellcheck: true,
+  });
+})();
 
 function createWindow() {
   const win = new BrowserWindow({
